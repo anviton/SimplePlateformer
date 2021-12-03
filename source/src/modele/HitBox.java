@@ -1,10 +1,10 @@
 package modele;
 
-public class Collision {
+public class HitBox {
     private int hauteur;
     private int largeur;
 
-    public Collision(int hauteur, int largeur) {
+    public HitBox(int hauteur, int largeur) {
         this.hauteur = hauteur;
         this.largeur = largeur;
     }

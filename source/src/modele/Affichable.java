@@ -2,9 +2,9 @@ package modele;
 
 public abstract class Affichable {
     protected String image;
-    protected Collision collisions;
+    protected HitBox collisions;
 
-    public Affichable(String image, Collision collision) {
+    public Affichable(String image, HitBox collision) {
         this.collisions = collision;
         this.image = image;
     }
@@ -17,11 +17,11 @@ public abstract class Affichable {
         this.image = image;
     }
 
-    public Collision getCollisions() {
+    public HitBox getCollisions() {
         return collisions;
     }
 
-    private void setCollisions(Collision collisions) {
+    private void setCollisions(HitBox collisions) {
         this.collisions = collisions;
     }
 

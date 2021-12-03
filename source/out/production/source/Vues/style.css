@@ -1,0 +1,28 @@
+.button{
+    -fx-text-fill:red;
+    -fx-font-size:20px;
+    -fx-padding:100px;
+    -fx-cursor:hand;
+    -fx-background-color:springgreen;
+}
+
+.VBox{
+    -fx-alignment:Right;
+    -fx-background-color:blue;
+
+}
+
+.AnchorPane{
+
+}
+
+.checkBox{
+    -fx-margin:10px;
+
+}
+
+.Titre{
+    -fx-font-size:50px;
+    -fx-underline:true;
+
+}

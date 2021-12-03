@@ -6,17 +6,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
-
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controleurs.ControleurOptions"
             prefHeight="400.0" prefWidth="600.0">
     <VBox>
-        <children>
-            <Text fx:id="hey" text="Nom Jeu"/>
-            <Button text="Niveaux"/>
-            <Button text="Options"/>
-            <Button text="Quitter"/>
-        </children>
+        <Label  text="Options" styleClass="Titre"/>
+        <FlowPane>
+            <Label text="Theme : "/>
+            <CheckBox text="Sombre" onMouseClicked="#actionTheme"/>
+        </FlowPane>
+        <Button text="Commandes" />
     </VBox>
+
 </AnchorPane>

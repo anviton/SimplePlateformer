@@ -6,7 +6,7 @@ public class Personnage extends Affichable{
     private int positionY;
 
 
-    public Personnage(String nom, int postionX, int positionY, String image, Collision collision) {
+    public Personnage(String nom, int postionX, int positionY, String image, HitBox collision) {
         super(image, collision);
         this.nom=nom;
         this.postionX = postionX;
