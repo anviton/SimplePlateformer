@@ -2,39 +2,72 @@ package modele;
 
 public class Personnage extends Affichable{
     private String nom;
-    private int postionX;
-    private int positionY;
+    private int nombreDeVies;
+    private boolean vivant;
+    private Objet[] listObjets = new Objet[3]; // le personnage peut posséder 3 objets simultanément maximum
+    private int nbObjets;
 
-
-    public Personnage(String nom, int postionX, int positionY, String image, HitBox collision) {
+    public Personnage(String nom, String image, HitBox collision) {
         super(image, collision);
         this.nom=nom;
-        this.postionX = postionX;
-        this.positionY = positionY;
+        this.nombreDeVies = 3;
+        this.vivant = true;
+        this.nbObjets = 0;
     }
 
-    public int getPostionX() {
-        return postionX;
+    public String getNom() { return nom; }
+
+    public int getNombreDeVies() {
+        return nombreDeVies;
     }
 
-    private void setPostionX(int postionX) {
-        this.postionX = postionX;
+    private void setNombreDeVies(int nombreDeVies) {
+        this.nombreDeVies = nombreDeVies;
     }
 
-    public int getPositionY() {
-        return positionY;
+    public boolean getVivant() {
+        return vivant;
     }
 
-    private void setPositionY(int positionY) {
-        this.positionY = positionY;
+    private void setVivant(boolean vivant) {
+        this.vivant = vivant;
     }
 
+    public Objet[] getListObjets() { return listObjets; }
+
+    public int getNbObjets() { return nbObjets; }
+
+    public void setNbObjets(int nbObjets) { this.nbObjets = nbObjets; }
 
     @Override
     public String toString() {
-        return "Personnage{" + super.toString() +
-                ", postionX=" + postionX +
-                ", positionY=" + positionY +
-                '}';
+        String message;
+        message = "Personnage{" + super.toString() +
+                ", nom=" + nom +
+                ", nombre de vies=" + nombreDeVies +
+                ", liste d'objet : " + nbObjets + " ";
+                for (int i=0; i < listObjets.length; i++) {
+                    if(listObjets[i] == null){
+                        return message;
+                    }
+                    message = message + listObjets[i].getNomObj() + " --> " + listObjets[i].getDescription() + " / ";
+                }
+        return message;
+    }
+
+    public int mourir(){
+        setNombreDeVies(this.nombreDeVies - 1);
+        return nombreDeVies;
+    }
+
+    public Objet[] prendreObjet(Objet item){
+        if(nbObjets == 3){
+            System.out.println("Inventaire plein");
+        }
+        else{
+            listObjets[nbObjets] = item;
+            setNbObjets(this.nbObjets + 1);
+        }
+        return listObjets;
     }
 }
