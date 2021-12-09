@@ -12,8 +12,8 @@
 
 }
 
-.AnchorPane{
-
+.GridPane{
+    -fx-alignment:center;
 }
 
 .checkBox{
