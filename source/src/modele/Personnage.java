@@ -70,4 +70,15 @@ public class Personnage extends Affichable{
         }
         return listObjets;
     }
+
+    public Objet[] utiliserObjet(){
+        if(nbObjets == 0){
+            System.out.println("Inventaire vide");
+        }
+        else{
+            listObjets[nbObjets-1] = null;
+            setNbObjets(this.nbObjets - 1);
+        }
+        return listObjets;
+    }
 }

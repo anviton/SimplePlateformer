@@ -11,7 +11,9 @@
     -fx-background-color:springgreen;
 }
 
-.AnchorPane{
+.VBox{
+    -fx-alignment:Right;
+    -fx-background-color:blue;
 
 }
 

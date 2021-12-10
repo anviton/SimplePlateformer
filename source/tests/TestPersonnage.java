@@ -14,5 +14,9 @@ public class TestPersonnage {
         persoTest.prendreObjet(banane);
         persoTest.prendreObjet(poire);
         System.out.println(persoTest);
+        persoTest.utiliserObjet();
+        persoTest.utiliserObjet();
+        persoTest.utiliserObjet();
+        System.out.println(persoTest);
     }
 }
