@@ -28,7 +28,7 @@ public class HitBox {
 
     @Override
     public String toString() {
-        return "Collision{" +
+        return "HitBox{" +
                 "hauteur=" + hauteur +
                 ", largeur=" + largeur +
                 '}';

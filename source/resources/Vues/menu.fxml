@@ -25,9 +25,9 @@
         <RowConstraints percentHeight="100"/>
     </rowConstraints>
         <children>
-                <Text fx:id="Titre" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="Titre" text="Platformer"/>
-            <Button GridPane.columnIndex="1" GridPane.rowIndex="1" text="Niveaux"/>
-            <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Options" onAction="#afficheOption"/>
-            <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Quitter" onAction="#quitter"/>
+                <Text fx:id="Titre" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="Titre" text="Simple plateformer"/>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="1" text="Niveaux" styleClass="BoutonCentre"/>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Options" styleClass="BoutonCentre" onAction="#afficheOption"/>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Quitter" styleClass="BoutonCentre" onAction="#quitter"/>
         </children>
 </GridPane>

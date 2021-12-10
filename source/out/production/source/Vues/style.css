@@ -1,7 +1,7 @@
 .grille{
     -fx-background-image : url("/fond1.png");
-    -fx-background-repeat : no-repeat;
-    -fx-background-size : 100%;
+    -fx-background-repeat : repeat;
+    -fx-background-size : 80%;
 }
 
 .button{
@@ -19,11 +19,9 @@
 
 .checkBox{
     -fx-margin:10px;
-
 }
 
 .Titre{
     -fx-font-size:50px;
     -fx-underline:true;
-
 }
