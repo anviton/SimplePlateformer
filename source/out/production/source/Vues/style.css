@@ -1,15 +1,14 @@
+.grille{
+    -fx-background-image : url("/fond1.png");
+    -fx-background-repeat : no-repeat;
+    -fx-background-size : 100%;
+}
+
 .button{
     -fx-text-fill:red;
     -fx-font-size:20px;
-    -fx-padding:100px;
     -fx-cursor:hand;
     -fx-background-color:springgreen;
-}
-
-.VBox{
-    -fx-alignment:Right;
-    -fx-background-color:blue;
-
 }
 
 .AnchorPane{

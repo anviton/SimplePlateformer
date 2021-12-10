@@ -8,16 +8,26 @@
 
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
+<GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0"
-            fx:controller="controleurs.ControleurMenu">
-    <VBox>
+            fx:controller="controleurs.ControleurMenu"
+            styleClass="grille">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="33"/>
+        <ColumnConstraints percentWidth="33"/>
+        <ColumnConstraints percentWidth="33"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="120"/>
+        <RowConstraints percentHeight="100"/>
+        <RowConstraints percentHeight="100"/>
+        <RowConstraints percentHeight="100"/>
+    </rowConstraints>
         <children>
-            <Text fx:id="Titre" styleClass="Titre" text="Platformer"/>
-            <Button text="Niveaux"/>
-            <Button text="Options" onAction="#afficheOption"/>
-            <Button text="Quitter" onAction="#quitter"/>
+                <Text fx:id="Titre" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="Titre" text="Platformer"/>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="1" text="Niveaux"/>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Options" onAction="#afficheOption"/>
+            <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Quitter" onAction="#quitter"/>
         </children>
-    </VBox>
-</AnchorPane>
+</GridPane>
