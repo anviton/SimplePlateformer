@@ -12,22 +12,17 @@
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0"
             fx:controller="controleurs.ControleurMenu"
-            styleClass="grille">
-    <columnConstraints>
-        <ColumnConstraints percentWidth="33"/>
-        <ColumnConstraints percentWidth="33"/>
-        <ColumnConstraints percentWidth="33"/>
-    </columnConstraints>
+            styleClass="grille" alignment="CENTER">
     <rowConstraints>
-        <RowConstraints percentHeight="120"/>
-        <RowConstraints percentHeight="100"/>
-        <RowConstraints percentHeight="100"/>
-        <RowConstraints percentHeight="100"/>
+        <RowConstraints percentHeight="25"/>
+        <RowConstraints percentHeight="5"/>
+        <RowConstraints percentHeight="45"/>
+        <RowConstraints percentHeight="25"/>
     </rowConstraints>
-        <children>
-                <Text fx:id="Titre" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="Titre" text="Simple plateformer"/>
-            <Button GridPane.columnIndex="1" GridPane.rowIndex="1" text="Niveaux" styleClass="BoutonCentre"/>
-            <Button GridPane.columnIndex="1" GridPane.rowIndex="2" text="Options" styleClass="BoutonCentre" onAction="#afficheOption"/>
-            <Button GridPane.columnIndex="1" GridPane.rowIndex="3" text="Quitter" styleClass="BoutonCentre" onAction="#quitter"/>
-        </children>
+    <Label textAlignment="CENTER" GridPane.rowIndex="1" alignment="TOP_CENTER" fx:id="Titre" styleClass="Titre" text="Simple plateformer"/>
+        <VBox alignment="CENTER" GridPane.rowIndex="2" spacing="5">
+            <Button text="Niveaux" styleClass="BoutonCentre"/>
+            <Button text="Options" styleClass="BoutonCentre" onAction="#afficheOption"/>
+            <Button text="Quitter" styleClass="BoutonCentre" onAction="#quitter"/>
+        </VBox>
 </GridPane>

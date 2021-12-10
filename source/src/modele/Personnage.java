@@ -21,7 +21,7 @@ public class Personnage extends Affichable{
         return nombreDeVies;
     }
 
-    private void setNombreDeVies(int nombreDeVies) {
+    public void setNombreDeVies(int nombreDeVies) {
         this.nombreDeVies = nombreDeVies;
     }
 
@@ -29,7 +29,7 @@ public class Personnage extends Affichable{
         return vivant;
     }
 
-    private void setVivant(boolean vivant) {
+    public void setVivant(boolean vivant) {
         this.vivant = vivant;
     }
 
