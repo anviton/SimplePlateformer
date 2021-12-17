@@ -12,7 +12,14 @@ public class Bloc {
         this.type = type;
         this.positionX = positionX;
         this.positionY = positionY;
-        this.hitBox = new HitBox(10, 10);
+        this.hitBox = new HitBox(300, 300);
+    }
+
+    public Bloc(int type, int positionY, int positionX, HitBox hitBox) {
+        this.type = type;
+        this.positionY = positionY;
+        this.positionX = positionX;
+        this.hitBox = hitBox;
     }
 
     public int getType() {

@@ -1,6 +1,4 @@
-import modele.Bloc;
-import modele.BlocAffichable;
-import modele.HitBox;
+import modele.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +8,11 @@ public class TestCreationDeBLoc {
         //Bloc blocTest = new Bloc(1, 0,0);
         //System.out.println(blocTest);
         List<String> listeCheminImageBloc = new ArrayList<String>();
+        listeCheminImageBloc.add("Blocs/briqueBase.png");
         listeCheminImageBloc.add("/personnage.png");
-        int id = 0 ;
-        BlocAffichable blocAffichableTest = new BlocAffichable(new Bloc(id, 0 , 0), listeCheminImageBloc.get(id));
-
-        System.out.println(blocAffichableTest);
+        ChargeurNiveau chargeur =  new ChargeurNiveau(listeCheminImageBloc);
+        String cheminACharger = "resources/Niveaux/niveau1";
+        Niveau n = chargeur.chargerNiveau(cheminACharger);
+        System.out.println(n.getListeBlocAffichable());
     }
 }

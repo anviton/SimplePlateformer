@@ -1,11 +1,11 @@
 package modele;
 
 
-public class BlocAffichable {
+public class BlocGraphique {
     String img;
     Bloc bloc;
 
-    public BlocAffichable(Bloc bloc, String img) {
+    public BlocGraphique(Bloc bloc, String img) {
         this.bloc = bloc;
         this.img = img;
     }

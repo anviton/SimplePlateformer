@@ -4,16 +4,16 @@ import java.util.List;
 
 public class Niveau {
     int difficulte;
-    List<BlocAffichable> listeBlocAffichable;
+    List<Bloc> listeBlocs;
 
 
-    public Niveau(List<BlocAffichable> listeBlocAffichable) {
-        this.listeBlocAffichable = listeBlocAffichable;
+    public Niveau(List<Bloc> listeBlocs) {
+        this.listeBlocs = listeBlocs;
         difficulte = 1;
     }
 
-    public List<BlocAffichable> getListeBlocAffichable() {
-        return listeBlocAffichable;
+    public List<Bloc> getListeBlocAffichable() {
+        return listeBlocs;
     }
 
     public int getDifficulte() {
