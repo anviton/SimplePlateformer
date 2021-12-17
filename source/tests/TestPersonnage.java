@@ -8,9 +8,9 @@ public class TestPersonnage {
     public static void main(String[] args){
         String cheminImage = "personnage.png";
         HitBox collision = new HitBox(10, 10);
-        Personnage persoTest = new Personnage("Joueur", cheminImage, collision);
-        Objet banane = new Objet("Banane", "Attaque tout le monde", cheminImage, collision);
-        Objet poire = new Objet("Poire", "Attaque pas tout le monde", cheminImage, collision);
+        Personnage persoTest = new Personnage("Joueur", 10, 10, collision);
+        Objet banane = new Objet("Banane", "Attaque tout le monde", 10, 10, collision);
+        Objet poire = new Objet("Poire", "Attaque pas tout le monde", 10, 10, collision);
         persoTest.prendreObjet(banane);
         persoTest.prendreObjet(poire);
         System.out.println(persoTest);

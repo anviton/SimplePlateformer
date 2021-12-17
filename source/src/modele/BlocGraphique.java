@@ -1,7 +1,7 @@
 package modele;
 
 
-public class BlocGraphique {
+public class  BlocGraphique {
     String img;
     Bloc bloc;
 

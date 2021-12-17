@@ -1,11 +1,11 @@
 package modele;
 
-public class Objet extends Affichable{
+public class Objet extends Entite{
     private String nomObj;
     private String description;
 
-    public Objet(String nom, String description, String image, HitBox collision){
-        super(image, collision);
+    public Objet(String nom, String description, int posX, int posY, HitBox hitbox){
+        super(posX, posY, hitbox);
         this.nomObj = nom;
         this.description = description;
     }

@@ -1,14 +1,14 @@
 package modele;
 
-public class Personnage extends Affichable{
+public class Personnage extends Entite{
     private String nom;
     private int nombreDeVies;
     private boolean vivant;
     private Objet[] listObjets = new Objet[3]; // le personnage peut posséder 3 objets simultanément maximum
     private int nbObjets;
 
-    public Personnage(String nom, String image, HitBox collision) {
-        super(image, collision);
+    public Personnage(String nom, int posX, int posY, HitBox hitbox) {
+        super(posX, posY, hitbox);
         this.nom=nom;
         this.nombreDeVies = 3;
         this.vivant = true;
