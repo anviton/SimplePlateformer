@@ -26,4 +26,8 @@ public class  BlocGraphique {
                 ", bloc=" + bloc +
                 '}';
     }
+
+    public String getImg() {
+        return img;
+    }
 }

@@ -21,7 +21,7 @@
     </rowConstraints>
     <Label textAlignment="CENTER" GridPane.rowIndex="1" alignment="TOP_CENTER" fx:id="Titre" styleClass="Titre" text="Simple plateformer"/>
         <VBox alignment="CENTER" GridPane.rowIndex="2" spacing="5">
-            <Button text="Niveaux" styleClass="BoutonCentre"/>
+            <Button text="Niveaux" styleClass="BoutonCentre" onAction="#afficheNiveau"/>
             <Button text="Options" styleClass="BoutonCentre" onAction="#afficheOption"/>
             <Button text="Quitter" styleClass="BoutonCentre" onAction="#quitter"/>
         </VBox>

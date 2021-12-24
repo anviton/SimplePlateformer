@@ -1,6 +1,6 @@
 package modele;
 
-public abstract class Entite {
+public abstract class Entite implements Runnable{
     private int positionX;
     private int positionY;
     private HitBox hitbox;
@@ -11,6 +11,10 @@ public abstract class Entite {
         this.hitbox = hb;
     }
 
+    @Override
+    public void run() {
+        System.out.println("Coucou");
+    }
     public int getPositionX() { return positionX; }
 
     public void setPositionX(int positionX) { this.positionX = positionX; }

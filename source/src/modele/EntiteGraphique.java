@@ -9,6 +9,14 @@ public class EntiteGraphique {
         this.img = img;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    private void setImg(String img) {
+        this.img = img;
+    }
+
     public Entite getEntite() {
         return entite;
     }
