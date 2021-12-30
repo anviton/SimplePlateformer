@@ -9,6 +9,8 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -48,14 +50,15 @@ public class ControleurMenu {
         Stage stage = (Stage) b.getScene().getWindow();
         stage.setMaximized(true);
 
-        Canvas c = new Canvas(3000, 2200);
+        Canvas c = new Canvas(3000, 2500);
         GraphicsContext gc = c.getGraphicsContext2D();
         GridPane g = new GridPane();
         g.setStyle("-fx-background-image: url('/fond1.png'); -fx-background-repeat: no-repeat; -fx-background-size: 3000 2200; -fx-background-position: center center;");
         g.getChildren().add(c);
         Scene s = new Scene(g);
+
         stage.setScene(s);
         Jeu j = new Jeu();
-        j.lancerBoucleDeJeu(gc);
+        j.lancerBoucleDeJeu(gc, s);
     }
 }

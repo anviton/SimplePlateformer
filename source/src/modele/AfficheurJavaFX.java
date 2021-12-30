@@ -21,19 +21,16 @@ public class AfficheurJavaFX extends Afficheur{
         gc = c.getGraphicsContext2D();
     }
 
-    public void mettreAjourLAffichageDuFond(String fond){
-        gc.drawImage(new Image(fond), 0, 0, 3000, 2200);
-    }
 
     public void mettreAjourLAffichageDuPersonnagePrincipal(Personnage p, double ancienPositionX, double ancienPositionY){
         //EntiteGraphique e = new EntiteGraphique(p, "/personnage.png");
         int taillePerso = 50;
 
         if (ancienPositionX != listeEntites.get(0).getEntite().getPositionX() || ancienPositionY != listeEntites.get(0).getEntite().getPositionY()) {
-            this.gc.clearRect(ancienPositionX * taillePerso, ancienPositionY * taillePerso, p.getHitbox().getLargeur(),
-                    p.getHitbox().getHauteur());
             this.gc.drawImage(new Image(listeEntites.get(0).getImg()), listeEntites.get(0).getEntite().getPositionX()*taillePerso,
                     listeEntites.get(0).getEntite().getPositionY()*taillePerso, taillePerso, taillePerso);
+            this.gc.clearRect(ancienPositionX * taillePerso, ancienPositionY * taillePerso, p.getHitbox().getLargeur(),
+                    p.getHitbox().getHauteur());
         }
 
     }
