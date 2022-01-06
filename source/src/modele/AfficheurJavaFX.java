@@ -3,6 +3,8 @@ package modele;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,5 +46,13 @@ public class AfficheurJavaFX extends Afficheur{
         }
         this.gc.drawImage(new Image(listeEntites.get(0).getImg()), listeEntites.get(0).getEntite().getPositionX()*largeurBloc,
                 listeEntites.get(0).getEntite().getPositionY()*largeurBloc, largeurBloc, largeurBloc);
+    }
+
+    public void mettreAJourLAffichageDuTemps(int temps){
+        gc.setFont(new Font(20));
+        gc.setFill(Color.WHITE);
+        gc.fillRect(28*50, 1*50, 50,50);
+        gc.setFill(Color.RED);
+        gc.fillText(temps + " s",28*50,75);
     }
 }

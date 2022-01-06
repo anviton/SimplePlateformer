@@ -15,6 +15,11 @@ public class Jeu implements Runnable{
     private boolean jeuEncours;
     private GraphicsContext gc;
     private Deplaceur deplaceur;
+    private Niveau niveau;
+
+    public Jeu(Niveau niveau) {
+        this.niveau = niveau;
+    }
 
     public void lancerBoucleDeJeu(){
         /*threadInterne = new Thread(this);
@@ -22,6 +27,9 @@ public class Jeu implements Runnable{
     }
 
     public void lancerBoucleDeJeu(GraphicsContext gc, Scene s){
+        if (niveau == null){
+            return;
+        }
         threadInterne = new Thread(this);
         threadInterne.start();
         this.gc = gc;
@@ -33,19 +41,21 @@ public class Jeu implements Runnable{
     @Override
     public void run() {
         int i = 0;
+        int compt = 0;
+        float vitesseChute = 8f;
+        double tpsRaf = 1000.0/30;
+        int chrono = 0;
+        float chronoIndicateur = 0;
         jeuEncours = true;
         AfficheurJavaFX afficheur = new AfficheurJavaFX(gc);
-        List<String> listeCheminImageBloc = new ArrayList<String>();
+        List<String> listeCheminImageBloc = new ArrayList<>();
         listeCheminImageBloc.add("Blocs/blocVide.png");
         listeCheminImageBloc.add("Blocs/briqueBase.png");
-        ChargeurNiveau chargeur =  new ChargeurNiveau(listeCheminImageBloc);
-        String cheminACharger = "resources/Niveaux/niveau1";
-        Niveau n = chargeur.chargerNiveau(cheminACharger);
         HitBox collision = new HitBox(50, 50);
         Personnage persoTest = new Personnage("Joueur", 1, 1, collision);
-        afficheur.afficherLeNiveau(n, listeCheminImageBloc, persoTest);
+        afficheur.afficherLeNiveau(niveau, listeCheminImageBloc, persoTest);
         afficheur.mettreAjourLAffichageDuPersonnagePrincipal(persoTest, persoTest.getPositionX(), persoTest.getPositionY());
-        deplaceur.setNiveau(n);
+        deplaceur.setNiveau(niveau);
         deplaceur.deplacer(persoTest);
         boolean gravite;
         while (jeuEncours){
@@ -57,15 +67,25 @@ public class Jeu implements Runnable{
                 jeuEncours = false;
             }
 
-            try {
-                threadInterne.sleep(60);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
+            compt++;
             gravite = deplaceur.gravite(persoTest);
             if (gravite) {
-                persoTest.setPositionY(persoTest.getPositionY() + 1);
+                if(compt >= tpsRaf/vitesseChute) {
+                    persoTest.setPositionY(persoTest.getPositionY() + 1);
+                    compt = 0;
+                }
+            }
+            if (chronoIndicateur == 30){
+                chrono++;
+                chronoIndicateur = 0;
+                //System.out.println(chrono);
+                afficheur.mettreAJourLAffichageDuTemps(chrono);
+            }
+            chronoIndicateur++;
+            try {
+                threadInterne.sleep((long)tpsRaf);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
             afficheur.mettreAjourLAffichageDuPersonnagePrincipal(persoTest, positionXAvant, positionYAvant);
         }

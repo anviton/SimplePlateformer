@@ -3,24 +3,18 @@ package controleurs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.GridPane;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import modele.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControleurMenu {
     @FXML
@@ -47,18 +41,26 @@ public class ControleurMenu {
     public void afficheNiveau(ActionEvent bouttonNiveau){
         Button b = (Button)bouttonNiveau.getSource();
 
+        ChargeurNiveau chargeur =  new ChargeurNiveau();
+        String cheminACharger = "resources/Niveaux/niveau1";
+        Niveau n = chargeur.chargerNiveau(cheminACharger);
+
         Stage stage = (Stage) b.getScene().getWindow();
         stage.setMaximized(true);
-
-        Canvas c = new Canvas(3000, 2500);
+        Canvas c = new Canvas((n.getLargeur() + 1) * 50, (n.getHauteur() + 1) * 50);
         GraphicsContext gc = c.getGraphicsContext2D();
-        GridPane g = new GridPane();
-        g.setStyle("-fx-background-image: url('/fond1.png'); -fx-background-repeat: no-repeat; -fx-background-size: 3000 2200; -fx-background-position: center center;");
-        g.getChildren().add(c);
-        Scene s = new Scene(g);
 
-        stage.setScene(s);
-        Jeu j = new Jeu();
+        //g.setStyle("-fx-background-image: url('/fond1.png'); -fx-background-repeat: no-repeat; -fx-background-size: 100%; -fx-background-position: center center;");
+        //g.getChildren().add(c);
+        Pane pane = new Pane();
+        pane.getChildren().add(new ImageView(new Image("/Niveaux/fondNiv.jpg", c.getWidth(), c.getHeight(), false, true)));
+        pane.getChildren().add(c);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(pane);
+        Scene s = b.getScene();
+        stage.setTitle("Niveau1");
+        s.setRoot(scrollPane);
+        Jeu j = new Jeu(n);
         j.lancerBoucleDeJeu(gc, s);
     }
 }
