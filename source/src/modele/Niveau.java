@@ -17,8 +17,17 @@ public class Niveau {
     public Niveau(List<Bloc> listeBlocs, String cheminFond) {
         this.listeBlocs = listeBlocs;
         this.cheminFond = cheminFond;
-        positionXArrivee =
         difficulte = 1;
+    }
+
+    public Niveau(List<Integer> positions,
+                  String cheminFond, List<Bloc> listeBlocs) {
+        this.positionXDepart = positions.get(0);
+        this.positionYDepart = positions.get(1);
+        this.positionXArrivee = positions.get(2);
+        this.positionYArrivee = positions.get(3);
+        this.cheminFond = cheminFond;
+        this.listeBlocs = listeBlocs;
     }
 
     public List<Bloc> getListeBlocs() {
@@ -55,5 +64,21 @@ public class Niveau {
 
     private void setCheminFond(String cheminFond) {
         this.cheminFond = cheminFond;
+    }
+
+    public int getPositionXArrivee() {
+        return positionXArrivee;
+    }
+
+    public int getPositionYArrivee() {
+        return positionYArrivee;
+    }
+
+    public int getPositionXDepart() {
+        return positionXDepart;
+    }
+
+    public int getPositionYDepart() {
+        return positionYDepart;
     }
 }

@@ -53,7 +53,7 @@ public class ControleurMenu {
         //g.setStyle("-fx-background-image: url('/fond1.png'); -fx-background-repeat: no-repeat; -fx-background-size: 100%; -fx-background-position: center center;");
         //g.getChildren().add(c);
         Pane pane = new Pane();
-        pane.getChildren().add(new ImageView(new Image("fond1.png", c.getWidth(), c.getHeight(), false, true)));
+        pane.getChildren().add(new ImageView(new Image(n.getCheminFond(), c.getWidth(), c.getHeight(), false, true)));
         pane.getChildren().add(c);
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pane);

@@ -1,33 +1,30 @@
 package modele;
 
 
+import javafx.scene.image.Image;
+
 public class  BlocGraphique {
-    String img;
+    Image image;
     Bloc bloc;
 
-    public BlocGraphique(Bloc bloc, String img) {
+    public BlocGraphique(Bloc bloc, String cheminImg) {
         this.bloc = bloc;
-        this.img = img;
+        this.image = new Image(cheminImg);
     }
-
 
     public Bloc getBloc() {
         return bloc;
     }
 
-    private void setBloc(Bloc bloc) {
-        this.bloc = bloc;
-    }
-
     @Override
     public String toString() {
         return "BlocAffichable{" +
-                "img='" + img + '\'' +
+                "img='" + image + '\'' +
                 ", bloc=" + bloc +
                 '}';
     }
 
-    public String getImg() {
-        return img;
+    public Image getImage() {
+        return image;
     }
 }

@@ -13,6 +13,7 @@ public class Jeu implements Runnable{
     private Deplaceur deplaceur;
     private final Niveau niveauLance;
     private Afficheur afficheur;
+    private static final double TPSRAFF = 1000.0/30;
 
     public Jeu(Niveau niveauLance) {
         this.niveauLance = niveauLance;
@@ -42,16 +43,16 @@ public class Jeu implements Runnable{
         double tpsRaf = 1000.0/30;
         int chrono = 0;
         float chronoIndicateur = 0;
-        Personnage persoTest = initialiserLeJeu();
+        Personnage perso = initialiserLeJeu();
         boolean gravite;
         while (jeuEnCours){
-            double positionXAvant = persoTest.getPositionX();
-            double positionYAvant = persoTest.getPositionY();
+            double positionXAvant = perso.getPositionX();
+            double positionYAvant = perso.getPositionY();
             compt++;
-            gravite = deplaceur.gererLaGravite(persoTest);
+            gravite = deplaceur.gererLaGravite(perso);
             if (gravite) {
                 if(compt >= tpsRaf/vitesseChute) {
-                    persoTest.setPositionY(persoTest.getPositionY() + 1);
+                    perso.setPositionY(perso.getPositionY() + 1);
                     compt = 0;
                 }
             }
@@ -66,8 +67,10 @@ public class Jeu implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            afficheur.mettreAjourLAffichageDuPersonnagePrincipal(persoTest, positionXAvant, positionYAvant);
+            afficheur.mettreAjourLAffichageDuPersonnagePrincipal(perso, positionXAvant, positionYAvant);
+            jeuEnCours = verificationVictoire(perso);
         }
+        this.gererVictoire();
     }
 
     private Personnage initialiserLeJeu(){
@@ -75,12 +78,22 @@ public class Jeu implements Runnable{
         listeCheminImageBloc.add("blocs/blocVide.png");
         listeCheminImageBloc.add("blocs/briqueBase.png");
         HitBox collision = new HitBox(50, 50);
-        Personnage persoTest = new Personnage("Joueur", 36, 1, collision);
-        afficheur.afficherLeNiveau(niveauLance, listeCheminImageBloc, persoTest);
+        Personnage perso = new Personnage("Joueur", niveauLance.getPositionXDepart(),
+                niveauLance.getPositionYDepart(), collision);
+        afficheur.afficherLeNiveau(niveauLance, listeCheminImageBloc, perso);
         deplaceur.setNiveau(niveauLance);
-        deplaceur.deplacerPersonnagePrincipal(persoTest);
+        deplaceur.deplacerPersonnagePrincipal(perso);
         jeuEnCours = true;
-        return persoTest;
+        return perso;
+    }
+
+    private boolean verificationVictoire(Personnage perso){
+        return niveauLance.getPositionXArrivee() != perso.getPositionX() ||
+                niveauLance.getPositionYArrivee() != perso.getPositionY();
+    }
+
+    private void gererVictoire(){
+        System.out.println("Le jeu est fini : Vous avez gagné");
     }
 
 }

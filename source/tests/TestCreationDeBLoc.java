@@ -11,8 +11,13 @@ public class TestCreationDeBLoc {
         listeCheminImageBloc.add("blocs/briqueBase.png");
         listeCheminImageBloc.add("/personnage.png");
         ChargeurNiveau chargeur =  new ChargeurNiveau();
-        String cheminACharger = "resources/Niveaux/niveau1";
+        String cheminACharger = "resources/niveaux/niveau1";
         Niveau n = chargeur.chargerNiveau(cheminACharger);
+
         System.out.println(n.getListeBlocs());
+        System.out.println("Position x de départ " + n.getPositionXDepart());
+        System.out.println("Position x de départ " + n.getPositionYDepart());
+        System.out.println("Position x de l'arrivée " + n.getPositionXArrivee());
+        System.out.println("Position y de l'arrivée " + n.getPositionYArrivee());
     }
 }

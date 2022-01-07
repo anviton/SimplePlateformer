@@ -1,20 +1,18 @@
 package modele;
 
+import javafx.scene.image.Image;
+
 public class EntiteGraphique {
-    String img;
+    Image image;
     Entite entite;
 
-    public EntiteGraphique(Entite entite, String img) {
+    public EntiteGraphique(Entite entite, String cheminImg) {
         this.entite = entite;
-        this.img = img;
+        this.image = new Image(cheminImg);
     }
 
-    public String getImg() {
-        return img;
-    }
-
-    private void setImg(String img) {
-        this.img = img;
+    public Image getImage() {
+        return image;
     }
 
     public Entite getEntite() {
@@ -28,7 +26,7 @@ public class EntiteGraphique {
     @Override
     public String toString() {
         return "EntiteGrpahique{" +
-                "img='" + img + '\'' +
+                "img='" + image + '\'' +
                 ", entité=" + entite +
                 '}';
     }
