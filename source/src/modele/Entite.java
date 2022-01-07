@@ -12,9 +12,7 @@ public abstract class Entite implements Runnable{
     }
 
     @Override
-    public void run() {
-        System.out.println("Coucou");
-    }
+    public void run() { System.out.println("Coucou"); }
     public int getPositionX() { return positionX; }
 
     public void setPositionX(int positionX) { this.positionX = positionX; }

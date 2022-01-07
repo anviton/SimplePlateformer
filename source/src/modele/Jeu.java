@@ -77,6 +77,7 @@ public class Jeu implements Runnable{
         List<String> listeCheminImageBloc = new ArrayList<>();
         listeCheminImageBloc.add("blocs/blocVide.png");
         listeCheminImageBloc.add("blocs/briqueBase.png");
+        listeCheminImageBloc.add("blocs/bombe.png");
         HitBox collision = new HitBox(50, 50);
         Personnage perso = new Personnage("Joueur", niveauLance.getPositionXDepart(),
                 niveauLance.getPositionYDepart(), collision);

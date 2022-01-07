@@ -30,8 +30,8 @@ public class AfficheurJavaFX extends Afficheur{
     }
 
     @Override
-    public void afficherLeNiveau(Niveau n, List<String> cheminImagesBlocs, Personnage peso){
-        listeEntitesGraphiques.add(new EntiteGraphique(peso, "/personnage.png"));
+    public void afficherLeNiveau(Niveau n, List<String> cheminImagesBlocs, Personnage perso){
+        listeEntitesGraphiques.add(new EntiteGraphique(perso, "/personnage.png"));
         for (Bloc bloc : n.getListeBlocs() ) {
             BlocGraphique blocGraphique = new BlocGraphique(bloc, cheminImagesBlocs.get(bloc.getType()));
             this.gc.drawImage(blocGraphique.getImage(), blocGraphique.getBloc().getPositionX()*TAILLE,
