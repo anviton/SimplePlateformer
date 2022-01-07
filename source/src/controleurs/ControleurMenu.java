@@ -30,10 +30,10 @@ public class ControleurMenu {
     public void afficheOption(ActionEvent buttonOption) throws IOException {
         Stage fenetreOption = new Stage();
         AnchorPane a;
-        a = FXMLLoader.load(getClass().getResource("/Vues/Options.fxml"));
+        a = FXMLLoader.load(getClass().getResource("/vues/options.fxml"));
         Scene s = new Scene(a, 500, 500);
         fenetreOption.setTitle("Options");
-        s.getStylesheets().add(getClass().getResource("/Vues/style.css").toExternalForm());
+        s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
         fenetreOption.setScene(s);
         fenetreOption.show();
     }
@@ -42,18 +42,18 @@ public class ControleurMenu {
         Button b = (Button)bouttonNiveau.getSource();
 
         ChargeurNiveau chargeur =  new ChargeurNiveau();
-        String cheminACharger = "resources/Niveaux/niveau1";
+        String cheminACharger = "resources/niveaux/niveau1";
         Niveau n = chargeur.chargerNiveau(cheminACharger);
 
         Stage stage = (Stage) b.getScene().getWindow();
         stage.setMaximized(true);
-        Canvas c = new Canvas((n.getLargeur() + 1) * 50, (n.getHauteur() + 1) * 50);
+        Canvas c = new Canvas((n.getLargeurNiveau() + 1) * 50, (n.getHauteurNiveau() + 1) * 50);
         GraphicsContext gc = c.getGraphicsContext2D();
 
         //g.setStyle("-fx-background-image: url('/fond1.png'); -fx-background-repeat: no-repeat; -fx-background-size: 100%; -fx-background-position: center center;");
         //g.getChildren().add(c);
         Pane pane = new Pane();
-        pane.getChildren().add(new ImageView(new Image("/Niveaux/fondNiv.jpg", c.getWidth(), c.getHeight(), false, true)));
+        pane.getChildren().add(new ImageView(new Image("fond1.png", c.getWidth(), c.getHeight(), false, true)));
         pane.getChildren().add(c);
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setContent(pane);

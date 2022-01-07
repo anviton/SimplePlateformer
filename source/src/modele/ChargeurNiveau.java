@@ -34,8 +34,8 @@ public class ChargeurNiveau {
         n = new Niveau(listeDeBlocs, cheminFond);
         if (!listeDeBlocs.isEmpty()) {
             Bloc bloc = listeDeBlocs.get(listeDeBlocs.size() - 1);
-            n.setHauteur(bloc.getPositionY());
-            n.setLargeur(bloc.getPositionX());
+            n.setHauteurNiveau(bloc.getPositionY());
+            n.setLargeurNiveau(bloc.getPositionX());
         }
         return n;
     }

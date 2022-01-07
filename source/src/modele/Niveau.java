@@ -3,20 +3,25 @@ package modele;
 import java.util.List;
 
 public class Niveau {
-    int difficulte;
-    private int hauteur;
-    private int largeur;
+    private int difficulte;
+    private int positionXArrivee;
+    private int positionYArrivee;
+    private int positionXDepart;
+    private int positionYDepart;
+    private int hauteurNiveau;
+    private int largeurNiveau;
     private String cheminFond;
-    List<Bloc> listeBlocs;
+    private final List<Bloc> listeBlocs;
 
 
     public Niveau(List<Bloc> listeBlocs, String cheminFond) {
         this.listeBlocs = listeBlocs;
         this.cheminFond = cheminFond;
+        positionXArrivee =
         difficulte = 1;
     }
 
-    public List<Bloc> getListeBlocAffichable() {
+    public List<Bloc> getListeBlocs() {
         return listeBlocs;
     }
 
@@ -28,20 +33,20 @@ public class Niveau {
         this.difficulte = difficulte;
     }
 
-    public int getHauteur() {
-        return hauteur;
+    public int getHauteurNiveau() {
+        return hauteurNiveau;
     }
 
-    public void setHauteur(int hauteur) {
-        this.hauteur = hauteur;
+    public void setHauteurNiveau(int hauteurNiveau) {
+        this.hauteurNiveau = hauteurNiveau;
     }
 
-    public int getLargeur() {
-        return largeur;
+    public int getLargeurNiveau() {
+        return largeurNiveau;
     }
 
-    public void setLargeur(int largeur) {
-        this.largeur = largeur;
+    public void setLargeurNiveau(int largeurNiveau) {
+        this.largeurNiveau = largeurNiveau;
     }
 
     public String getCheminFond() {

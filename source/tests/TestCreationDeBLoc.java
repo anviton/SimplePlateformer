@@ -8,11 +8,11 @@ public class TestCreationDeBLoc {
         //Bloc blocTest = new Bloc(1, 0,0);
         //System.out.println(blocTest);
         List<String> listeCheminImageBloc = new ArrayList<String>();
-        listeCheminImageBloc.add("Blocs/briqueBase.png");
+        listeCheminImageBloc.add("blocs/briqueBase.png");
         listeCheminImageBloc.add("/personnage.png");
         ChargeurNiveau chargeur =  new ChargeurNiveau();
         String cheminACharger = "resources/Niveaux/niveau1";
         Niveau n = chargeur.chargerNiveau(cheminACharger);
-        System.out.println(n.getListeBlocAffichable());
+        System.out.println(n.getListeBlocs());
     }
 }

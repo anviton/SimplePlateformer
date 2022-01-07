@@ -12,7 +12,6 @@ public class Deplaceur {
     private Scene scene;
     private Niveau niveau;
     private boolean saut;
-    private boolean gravite;
 
     public Deplaceur(Scene s) {
         this.scene = s;
@@ -22,31 +21,25 @@ public class Deplaceur {
         this.niveau = niveau;
     }
 
-    public void deplacer(Personnage perso) {
+    public void deplacerPersonnagePrincipal(Personnage perso) {
         scene.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {
             boolean collision = true;
             //System.out.println(niveau.getListeBlocAffichable().size());
                 if (key.getCode() == KeyCode.RIGHT) {
-                    //System.out.println("Droite");
-                    for (int i = 0; i < niveau.getListeBlocAffichable().size(); i++) {
-                        //System.out.println(i);
-                        Bloc bloc = niveau.getListeBlocAffichable().get(i);
-                        //System.out.println(bloc);
+                    for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+                        Bloc bloc = niveau.getListeBlocs().get(i);
                         if (perso.getPositionX() + 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY() && bloc.getType() == 1) {
                             collision = false;
-                            //System.out.println("Collision");
                             break;
                         }
                     }
-                    //this.gravite(perso);
                     if(collision) {
                         perso.setPositionX(perso.getPositionX() + 1);
-                        //System.out.println(perso.getPositionX());
                     }
                 }
                 if (key.getCode() == KeyCode.LEFT) {
-                    for (int i = 0; i < niveau.getListeBlocAffichable().size(); i++) {
-                        Bloc bloc = niveau.getListeBlocAffichable().get(i);
+                    for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+                        Bloc bloc = niveau.getListeBlocs().get(i);
                         if (perso.getPositionX() - 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY() &&
                                 bloc.getType() == 1) {
                             collision = false;
@@ -64,9 +57,8 @@ public class Deplaceur {
                     for (int i = 0; i < 4; i++) {
                         collisionsSaut.add(true);
                     }
-                    System.out.println("Sauter");
-                    for (int i = 0; i < niveau.getListeBlocAffichable().size(); i++) {
-                        Bloc bloc = niveau.getListeBlocAffichable().get(i);
+                    for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+                        Bloc bloc = niveau.getListeBlocs().get(i);
                         if (perso.getPositionY() - 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() && bloc.getType() == 1) {
                             collisionsSaut.set(0, false);
                             collisionsSaut.set(1, false);
@@ -97,16 +89,16 @@ public class Deplaceur {
                         }
                     }
                     System.out.println(tailleSaut);
-                    this.sauter(perso, tailleSaut);
+                    this.faireUnSaut(perso, tailleSaut);
                 }
         });
     }
 
-    public boolean gravite(Personnage perso){
-        gravite = true;
+    public boolean gererLaGravite(Personnage perso){
+        boolean gravite = true;
         saut = false;
-        for (int i = 0; i < niveau.getListeBlocAffichable().size(); i++) {
-            Bloc bloc = niveau.getListeBlocAffichable().get(i);
+        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+            Bloc bloc = niveau.getListeBlocs().get(i);
             if (perso.getPositionY() + 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() && bloc.getType() == 1) {
                 gravite = false;
                 saut = true;
@@ -116,11 +108,16 @@ public class Deplaceur {
         return gravite;
     }
 
-    private void sauter(Personnage perso, int taillesaut){
+    private void faireUnSaut(Personnage perso, int taillesaut){
         if (saut) {
             perso.setPositionY(perso.getPositionY() - taillesaut);
-            //System.out.println(perso.getPositionY());
             saut = false;
         }
     }
+
+    private void sauter(Personnage perso){
+
+    }
+
+
 }

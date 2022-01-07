@@ -11,11 +11,11 @@ import java.util.List;
 
 public class AfficheurJavaFX extends Afficheur{
     private GraphicsContext gc;
-    private List<EntiteGraphique> listeEntites;
+    private List<EntiteGraphique> listeEntitesGraphiques;
 
     public AfficheurJavaFX(GraphicsContext gc) {
         this.gc = gc;
-        this.listeEntites = new ArrayList<>();
+        this.listeEntitesGraphiques = new ArrayList<>();
     }
 
     public AfficheurJavaFX() {
@@ -23,36 +23,38 @@ public class AfficheurJavaFX extends Afficheur{
         gc = c.getGraphicsContext2D();
     }
 
-
+    @Override
     public void mettreAjourLAffichageDuPersonnagePrincipal(Personnage p, double ancienPositionX, double ancienPositionY){
         //EntiteGraphique e = new EntiteGraphique(p, "/personnage.png");
         int taillePerso = 50;
 
-        if (ancienPositionX != listeEntites.get(0).getEntite().getPositionX() || ancienPositionY != listeEntites.get(0).getEntite().getPositionY()) {
-            this.gc.drawImage(new Image(listeEntites.get(0).getImg()), listeEntites.get(0).getEntite().getPositionX()*taillePerso,
-                    listeEntites.get(0).getEntite().getPositionY()*taillePerso, taillePerso, taillePerso);
+        if (ancienPositionX != listeEntitesGraphiques.get(0).getEntite().getPositionX() || ancienPositionY != listeEntitesGraphiques.get(0).getEntite().getPositionY()) {
+            this.gc.drawImage(new Image(listeEntitesGraphiques.get(0).getImg()), listeEntitesGraphiques.get(0).getEntite().getPositionX()*taillePerso,
+                    listeEntitesGraphiques.get(0).getEntite().getPositionY()*taillePerso, taillePerso, taillePerso);
             this.gc.clearRect(ancienPositionX * taillePerso, ancienPositionY * taillePerso, p.getHitbox().getLargeur(),
                     p.getHitbox().getHauteur());
         }
 
     }
 
-    public void afficherLeNiveau(Niveau n, List<String> cheminImagesBlocs, Personnage p){
+    @Override
+    public void afficherLeNiveau(Niveau n, List<String> cheminImagesBlocs, Personnage peso){
         int largeurBloc = 50;
-        listeEntites.add(new EntiteGraphique(p, "/personnage.png"));
-        for (Bloc bloc : n.getListeBlocAffichable() ) {
+        listeEntitesGraphiques.add(new EntiteGraphique(peso, "/personnage.png"));
+        for (Bloc bloc : n.getListeBlocs() ) {
             BlocGraphique blocGraphique = new BlocGraphique(bloc, cheminImagesBlocs.get(bloc.getType()));
             this.gc.drawImage(new Image(blocGraphique.getImg()), blocGraphique.getBloc().getPositionX()*largeurBloc, blocGraphique.getBloc().getPositionY()*largeurBloc, largeurBloc, largeurBloc);
         }
-        this.gc.drawImage(new Image(listeEntites.get(0).getImg()), listeEntites.get(0).getEntite().getPositionX()*largeurBloc,
-                listeEntites.get(0).getEntite().getPositionY()*largeurBloc, largeurBloc, largeurBloc);
+        this.gc.drawImage(new Image(listeEntitesGraphiques.get(0).getImg()), listeEntitesGraphiques.get(0).getEntite().getPositionX()*largeurBloc,
+                listeEntitesGraphiques.get(0).getEntite().getPositionY()*largeurBloc, largeurBloc, largeurBloc);
     }
 
+    @Override
     public void mettreAJourLAffichageDuTemps(int temps){
         gc.setFont(new Font(20));
         gc.setFill(Color.WHITE);
-        gc.fillRect(28*50, 1*50, 50,50);
+        gc.fillRect(1*50, 12*50, 50,50);
         gc.setFill(Color.RED);
-        gc.fillText(temps + " s",28*50,75);
+        gc.fillText(temps + "s",1*50,(12*50)+25);
     }
 }

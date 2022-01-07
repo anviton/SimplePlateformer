@@ -1,6 +1,5 @@
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.application.Application;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -9,9 +8,9 @@ import java.io.IOException;
 public class Main extends Application{
     @Override
     public void start(Stage stage) throws IOException {
-        GridPane a = FXMLLoader.load(getClass().getResource("/Vues/menu.fxml"));
+        GridPane a = FXMLLoader.load(getClass().getResource("/vues/menu.fxml"));
         Scene s = new Scene(a, 1000, 1000);
-        s.getStylesheets().add(getClass().getResource("/Vues/style.css").toExternalForm());
+        s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
         stage.setTitle("Menu Principal");
         stage.setScene(s);
         stage.show();

@@ -2,23 +2,20 @@ package modele;
 
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Jeu implements Runnable{
 
     private Thread threadInterne;
-    private boolean jeuEncours;
-    private GraphicsContext gc;
+    private boolean jeuEnCours;
     private Deplaceur deplaceur;
-    private Niveau niveau;
+    private final Niveau niveauLance;
+    private Afficheur afficheur;
 
-    public Jeu(Niveau niveau) {
-        this.niveau = niveau;
+    public Jeu(Niveau niveauLance) {
+        this.niveauLance = niveauLance;
     }
 
     public void lancerBoucleDeJeu(){
@@ -27,48 +24,31 @@ public class Jeu implements Runnable{
     }
 
     public void lancerBoucleDeJeu(GraphicsContext gc, Scene s){
-        if (niveau == null){
+        if (niveauLance == null){
             return;
         }
         threadInterne = new Thread(this);
-        threadInterne.start();
-        this.gc = gc;
         this.deplaceur = new Deplaceur(s);
+        this.afficheur = new AfficheurJavaFX(gc);
+        threadInterne.start();
         //this.run();
     }
 
 
     @Override
     public void run() {
-        int i = 0;
         int compt = 0;
         float vitesseChute = 8f;
         double tpsRaf = 1000.0/30;
         int chrono = 0;
         float chronoIndicateur = 0;
-        jeuEncours = true;
-        AfficheurJavaFX afficheur = new AfficheurJavaFX(gc);
-        List<String> listeCheminImageBloc = new ArrayList<>();
-        listeCheminImageBloc.add("Blocs/blocVide.png");
-        listeCheminImageBloc.add("Blocs/briqueBase.png");
-        HitBox collision = new HitBox(50, 50);
-        Personnage persoTest = new Personnage("Joueur", 1, 1, collision);
-        afficheur.afficherLeNiveau(niveau, listeCheminImageBloc, persoTest);
-        afficheur.mettreAjourLAffichageDuPersonnagePrincipal(persoTest, persoTest.getPositionX(), persoTest.getPositionY());
-        deplaceur.setNiveau(niveau);
-        deplaceur.deplacer(persoTest);
+        Personnage persoTest = initialiserLeJeu();
         boolean gravite;
-        while (jeuEncours){
+        while (jeuEnCours){
             double positionXAvant = persoTest.getPositionX();
             double positionYAvant = persoTest.getPositionY();
-            //System.out.println("toto" + i);
-            i++;
-            if(i == 20000){
-                jeuEncours = false;
-            }
-
             compt++;
-            gravite = deplaceur.gravite(persoTest);
+            gravite = deplaceur.gererLaGravite(persoTest);
             if (gravite) {
                 if(compt >= tpsRaf/vitesseChute) {
                     persoTest.setPositionY(persoTest.getPositionY() + 1);
@@ -78,7 +58,6 @@ public class Jeu implements Runnable{
             if (chronoIndicateur == 30){
                 chrono++;
                 chronoIndicateur = 0;
-                //System.out.println(chrono);
                 afficheur.mettreAJourLAffichageDuTemps(chrono);
             }
             chronoIndicateur++;
@@ -89,14 +68,19 @@ public class Jeu implements Runnable{
             }
             afficheur.mettreAjourLAffichageDuPersonnagePrincipal(persoTest, positionXAvant, positionYAvant);
         }
-        System.out.println("Le jeu est fini");
     }
 
-    public boolean isJeuEncours() {
-        return jeuEncours;
+    private Personnage initialiserLeJeu(){
+        List<String> listeCheminImageBloc = new ArrayList<>();
+        listeCheminImageBloc.add("blocs/blocVide.png");
+        listeCheminImageBloc.add("blocs/briqueBase.png");
+        HitBox collision = new HitBox(50, 50);
+        Personnage persoTest = new Personnage("Joueur", 36, 1, collision);
+        afficheur.afficherLeNiveau(niveauLance, listeCheminImageBloc, persoTest);
+        deplaceur.setNiveau(niveauLance);
+        deplaceur.deplacerPersonnagePrincipal(persoTest);
+        jeuEnCours = true;
+        return persoTest;
     }
 
-    public void setJeuEncours(boolean jeuEncours) {
-        this.jeuEncours = jeuEncours;
-    }
 }
