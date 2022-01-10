@@ -4,7 +4,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.List;
 
 public class DeplaceurJavaFX extends Deplaceur {
@@ -36,18 +36,30 @@ public class DeplaceurJavaFX extends Deplaceur {
     @Override
     public boolean gererLaGravite(Personnage perso){
         boolean collision = collisionneur.verifCollisionEnDessous(perso, niveau);
-        if (!collision){
+        //boolean collisionBombe = collisionneur.verifCollisionBombeEnDessous(perso, niveau);
+        /*if (!collision){
             saut = true;
-        }
+        }*/
+        //if (!collisionBombe){
+            if (!collision){
+                saut = true;
+            }
+        //}
         return collision;
     }
 
     private void sauter(Personnage perso){
         List<Boolean> collisionsSaut = collisionneur.verifcollisionSaut(perso, niveau);
+        List<Boolean> collisionsBombeSaut = collisionneur.verifcollisionBombeSaut(perso, niveau);
         int tailleSaut = 0;
         for (int i = 0; i < 4; i++) {
-            if (collisionsSaut.get(i)) {
+            /*if (collisionsSaut.get(i)) {
                 tailleSaut++;
+            }*/
+            if (collisionsBombeSaut.get(i)){
+                if (collisionsSaut.get(i)){
+                    tailleSaut++;
+                }
             }
         }
         if (saut) {
@@ -57,14 +69,24 @@ public class DeplaceurJavaFX extends Deplaceur {
     }
 
     private void seDeplacerAGauche(Personnage perso){
-        if(collisionneur.verifCollisionAGauche(perso, niveau)) {
+        /*if(collisionneur.verifCollisionAGauche(perso, niveau)) {
             perso.setPositionX(perso.getPositionX() - 1);
+        }*/
+        if(collisionneur.verifCollisionBombeAGauche(perso, niveau)){
+            if(collisionneur.verifCollisionAGauche(perso, niveau)){
+                perso.setPositionX(perso.getPositionX() - 1);
+            }
         }
     }
 
     private void seDeplacerADroite(Personnage perso){
-        if(collisionneur.verifCollisionADroite(perso, niveau)) {
+        /*if(collisionneur.verifCollisionADroite(perso, niveau)) {
             perso.setPositionX(perso.getPositionX() + 1);
+        }*/
+        if(collisionneur.verifCollisionBombeADroite(perso, niveau)){
+            if(collisionneur.verifCollisionADroite(perso, niveau)){
+                perso.setPositionX(perso.getPositionX() + 1);
+            }
         }
     }
 }

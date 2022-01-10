@@ -17,6 +17,19 @@ public class Collisionneur {
         return collision;
     }
 
+    public boolean verifCollisionBombeAGauche(Personnage perso, Niveau niveau){
+        boolean collisionBombe = true;
+        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+            Bloc bloc = niveau.getListeBlocs().get(i);
+            if (perso.getPositionX() - 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
+                    && bloc.getHitBox() != null && bloc.getType() == 2) {
+                collisionBombe = false;
+                break;
+            }
+        }
+        return collisionBombe;
+    }
+
     public boolean verifCollisionADroite(Personnage perso, Niveau niveau){
         boolean collision = true;
         for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
@@ -28,6 +41,19 @@ public class Collisionneur {
             }
         }
         return collision;
+    }
+
+    public boolean verifCollisionBombeADroite(Personnage perso, Niveau niveau){
+        boolean collisionBombe = true;
+        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+            Bloc bloc = niveau.getListeBlocs().get(i);
+            if (perso.getPositionX() + 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
+                    && bloc.getHitBox() != null && bloc.getType() == 2) {
+                collisionBombe = false;
+                break;
+            }
+        }
+        return collisionBombe;
     }
 
     public boolean verifCollisionEnDessous(Personnage perso, Niveau niveau){
@@ -43,7 +69,20 @@ public class Collisionneur {
         return gravite;
     }
 
-    public List<Boolean>  verifcollisionSaut(Personnage perso, Niveau niveau){
+    /*public boolean verifCollisionBombeEnDessous(Personnage perso, Niveau niveau){
+        boolean collisionBombe = true;
+        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+            Bloc bloc = niveau.getListeBlocs().get(i);
+            if (perso.getPositionY() + 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() &&
+                    bloc.getHitBox() != null && bloc.getType() == 2) {
+                collisionBombe = false;
+                break;
+            }
+        }
+        return collisionBombe;
+    }*/
+
+    public List<Boolean> verifcollisionSaut(Personnage perso, Niveau niveau){
         List<Boolean> collisionsSaut = new ArrayList<>();
         for (int i = 0; i < 4; i++) {
             collisionsSaut.add(true);
@@ -74,6 +113,39 @@ public class Collisionneur {
             }
         }
         return collisionsSaut;
+    }
+
+    public List<Boolean> verifcollisionBombeSaut(Personnage perso, Niveau niveau){
+        List<Boolean> collisionsBombeSaut = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            collisionsBombeSaut.add(true);
+        }
+        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
+            Bloc bloc = niveau.getListeBlocs().get(i);
+            if (perso.getPositionY() - 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
+                    && bloc.getHitBox() != null && bloc.getType() == 2) {
+                collisionsBombeSaut.set(0, false);
+                collisionsBombeSaut.set(1, false);
+                collisionsBombeSaut.set(2, false);
+                collisionsBombeSaut.set(3, false);
+            }
+            if (perso.getPositionY() - 2 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
+                    && bloc.getHitBox() != null && bloc.getType() == 2) {
+                collisionsBombeSaut.set(1, false);
+                collisionsBombeSaut.set(2, false);
+                collisionsBombeSaut.set(3, false);
+            }
+            if (perso.getPositionY() - 3 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
+                    && bloc.getHitBox() != null && bloc.getType() == 2) {
+                collisionsBombeSaut.set(2, false);
+                collisionsBombeSaut.set(3, false);
+            }
+            if (perso.getPositionY() - 4 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
+                    && bloc.getHitBox() != null && bloc.getType() == 2) {
+                collisionsBombeSaut.set(3, false);
+            }
+        }
+        return collisionsBombeSaut;
     }
 
 }

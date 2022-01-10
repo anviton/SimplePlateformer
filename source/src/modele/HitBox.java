@@ -18,9 +18,7 @@ public class HitBox {
         this.hauteur = hauteur;
     }
 
-    public int getLargeur() {
-        return largeur;
-    }
+    public int getLargeur() { return largeur; }
 
     private void setLargeur(int largeur) {
         this.largeur = largeur;
