@@ -11,7 +11,7 @@ public class TestCreationDeBLoc {
         listeCheminImageBloc.add("blocs/briqueBase.png");
         listeCheminImageBloc.add("/personnage.png");
         ChargeurNiveau chargeur =  new ChargeurNiveau();
-        String cheminACharger = "resources/niveaux/niveau1";
+        String cheminACharger = "resources/niveaux/niveau1.niv";
         Niveau n = chargeur.chargerNiveau(cheminACharger);
 
         System.out.println(n.getListeBlocs());

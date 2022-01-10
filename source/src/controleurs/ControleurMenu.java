@@ -40,10 +40,8 @@ public class ControleurMenu {
 
     public void afficheNiveau(ActionEvent bouttonNiveau){
         Button b = (Button)bouttonNiveau.getSource();
-
         ChargeurNiveau chargeur =  new ChargeurNiveau();
-        String cheminACharger = "resources/niveaux/niveau1";
-        Niveau n = chargeur.chargerNiveau(cheminACharger);
+        Niveau n = chargeur.chargerNiveau("resources/niveaux/niveau1.niv");
 
         Stage stage = (Stage) b.getScene().getWindow();
         stage.setMaximized(true);
@@ -62,5 +60,6 @@ public class ControleurMenu {
         s.setRoot(scrollPane);
         Jeu j = new Jeu(n);
         j.lancerBoucleDeJeu(gc, s);
+
     }
 }

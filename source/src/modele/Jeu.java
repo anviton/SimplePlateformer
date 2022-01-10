@@ -1,5 +1,6 @@
 package modele;
 
+import controleurs.ControleurMenu;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -9,10 +10,12 @@ import java.util.List;
 public class Jeu implements Runnable{
 
     private Thread threadInterne;
+    private int chrono = 0;
     private boolean jeuEnCours;
     private Deplaceur deplaceur;
     private final Niveau niveauLance;
     private Afficheur afficheur;
+    private StockagePosition stockagePosition;
     private static final double TPSRAFF = 1000.0/30;
 
     public Jeu(Niveau niveauLance) {
@@ -29,10 +32,9 @@ public class Jeu implements Runnable{
             return;
         }
         threadInterne = new Thread(this);
-        this.deplaceur = new Deplaceur(s);
+        this.deplaceur = new DeplaceurJavaFX(s);
         this.afficheur = new AfficheurJavaFX(gc);
         threadInterne.start();
-        //this.run();
     }
 
 
@@ -41,7 +43,6 @@ public class Jeu implements Runnable{
         int compt = 0;
         float vitesseChute = 8f;
         double tpsRaf = 1000.0/30;
-        int chrono = 0;
         float chronoIndicateur = 0;
         Personnage perso = initialiserLeJeu();
         boolean gravite;
@@ -63,27 +64,33 @@ public class Jeu implements Runnable{
             }
             chronoIndicateur++;
             try {
-                threadInterne.sleep((long)tpsRaf);
+                threadInterne.sleep((long)TPSRAFF);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             afficheur.mettreAjourLAffichageDuPersonnagePrincipal(perso, positionXAvant, positionYAvant);
             jeuEnCours = verificationVictoire(perso);
         }
-        this.gererVictoire();
+        try {
+            threadInterne.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private Personnage initialiserLeJeu(){
         List<String> listeCheminImageBloc = new ArrayList<>();
-        listeCheminImageBloc.add("blocs/blocVide.png");
-        listeCheminImageBloc.add("blocs/briqueBase.png");
-        listeCheminImageBloc.add("blocs/bombe.png");
+        listeCheminImageBloc.add("/blocs/blocVide.png");
+        listeCheminImageBloc.add("/blocs/briqueBase.png");
+        listeCheminImageBloc.add("/blocs/bombe.png");
         HitBox collision = new HitBox(50, 50);
         Personnage perso = new Personnage("Joueur", niveauLance.getPositionXDepart(),
                 niveauLance.getPositionYDepart(), collision);
         afficheur.afficherLeNiveau(niveauLance, listeCheminImageBloc, perso);
         deplaceur.setNiveau(niveauLance);
         deplaceur.deplacerPersonnagePrincipal(perso);
+        stockagePosition = new StockagePosition();
+        stockagePosition.ajouterUnePosition(perso.creerMemento());
         jeuEnCours = true;
         return perso;
     }
@@ -93,8 +100,15 @@ public class Jeu implements Runnable{
                 niveauLance.getPositionYArrivee() != perso.getPositionY();
     }
 
-    private void gererVictoire(){
-        System.out.println("Le jeu est fini : Vous avez gagné");
+    public boolean isJeuEnCours() {
+        return jeuEnCours;
     }
 
+    public Thread getThreadInterne() {
+        return threadInterne;
+    }
+
+    public int getChrono() {
+        return chrono;
+    }
 }

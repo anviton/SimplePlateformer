@@ -13,6 +13,15 @@ public abstract class Entite implements Runnable{
 
     @Override
     public void run() { System.out.println("Coucou"); }
+
+    public Position creerMemento(){
+        return new Position(this.positionX, this.positionY);
+    }
+
+    public void setCoordonnees(Position position){
+        this.positionX = position.getX();
+        this.positionX = position.getY();
+    }
     public int getPositionX() { return positionX; }
 
     public void setPositionX(int positionX) { this.positionX = positionX; }

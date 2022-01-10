@@ -14,6 +14,10 @@ public class ChargeurNiveau {
         String elementDeSeparation = ",";
         String cheminFond = null;
         try {
+            /*String cheminTest = String.valueOf(getClass().getResource(chemin));
+            System.out.println(cheminTest);
+            File f =new File(cheminTest);
+            System.out.println(f);*/
             FileReader lecteur = new FileReader(chemin);
             BufferedReader lecteurDeTuile = new BufferedReader(lecteur);
             String ligne;
@@ -28,7 +32,12 @@ public class ChargeurNiveau {
                 String[] tabTuiles = ligne.split(elementDeSeparation);
                 for (String tuile : tabTuiles){
                     int type = Integer.parseInt(tuile);
-                    listeDeBlocs.add(new Bloc(type, i, j));
+                    if (type == 1 || type == 2) {
+                        listeDeBlocs.add(new Bloc(type, i, j, new HitBox(50,50)));
+                    }
+                    else {
+                        listeDeBlocs.add(new Bloc(type, i, j, null));
+                    }
                     i++;
                 }
                 i = 0;

@@ -3,12 +3,12 @@ package modele;
 import javafx.scene.image.Image;
 
 public class EntiteGraphique {
-    Image image;
-    Entite entite;
+    private Image image;
+    private Entite entite;
 
     public EntiteGraphique(Entite entite, String cheminImg) {
         this.entite = entite;
-        this.image = new Image(cheminImg);
+        this.image = new Image(String.valueOf(getClass().getResource(cheminImg)));
     }
 
     public Image getImage() {

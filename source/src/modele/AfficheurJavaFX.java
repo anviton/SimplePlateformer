@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AfficheurJavaFX extends Afficheur{
-    private GraphicsContext gc;
-    private List<EntiteGraphique> listeEntitesGraphiques;
+    private final GraphicsContext gc;
+    private final List<EntiteGraphique> listeEntitesGraphiques;
     private static final int TAILLE = 50;
 
     public AfficheurJavaFX(GraphicsContext gc) {
@@ -47,6 +47,7 @@ public class AfficheurJavaFX extends Afficheur{
         gc.setFill(Color.WHITE);
         gc.fillRect(TAILLE, 12*TAILLE, TAILLE,TAILLE);
         gc.setFill(Color.RED);
-        gc.fillText(temps + "s", TAILLE,(12*TAILLE)+TAILLE/2);
+        int tailleDiv2 = TAILLE/2;
+        gc.fillText(temps + "s", TAILLE,(12*TAILLE)+tailleDiv2);
     }
 }

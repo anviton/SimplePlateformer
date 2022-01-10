@@ -9,7 +9,7 @@ public class  BlocGraphique {
 
     public BlocGraphique(Bloc bloc, String cheminImg) {
         this.bloc = bloc;
-        this.image = new Image(cheminImg);
+        this.image = new Image(String.valueOf(getClass().getResource(cheminImg)));
     }
 
     public Bloc getBloc() {

@@ -8,14 +8,14 @@ public class Bloc {
     private HitBox hitBox;
 
 
-    public Bloc(int type, int positionX, int positionY) {
+    /*public Bloc(int type, int positionX, int positionY) {
         this.type = type;
         this.positionX = positionX;
         this.positionY = positionY;
         this.hitBox = new HitBox(300, 300);
-    }
+    }*/
 
-    public Bloc(int type, int positionY, int positionX, HitBox hitBox) {
+    public Bloc(int type, int positionX, int positionY, HitBox hitBox) {
         this.type = type;
         this.positionY = positionY;
         this.positionX = positionX;
