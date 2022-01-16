@@ -1,10 +1,12 @@
-package modele;
+package modele.metier;
+
+import modele.Position;
 
 public abstract class Entite extends Composant implements Runnable{
 
 
     public Entite(int posX, int posY, HitBox hb){
-        super(posX, posX, hb);
+        super(posX, posY, hb);
     }
 
     @Override

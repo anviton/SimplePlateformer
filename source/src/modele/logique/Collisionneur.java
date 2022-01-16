@@ -1,4 +1,8 @@
-package modele;
+package modele.logique;
+
+import modele.metier.Bloc;
+import modele.metier.Niveau;
+import modele.metier.Personnage;
 
 import java.util.ArrayList;
 import java.util.List;

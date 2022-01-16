@@ -1,4 +1,8 @@
-package modele;
+package modele.logique;
+
+import modele.metier.Bloc;
+import modele.metier.HitBox;
+import modele.metier.Niveau;
 
 import java.io.*;
 import java.util.ArrayList;

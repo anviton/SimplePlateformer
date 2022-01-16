@@ -1,6 +1,8 @@
-package modele;
+package modele.metier;
 
-public class Personnage extends Entite{
+import modele.Objet;
+
+public class Personnage extends Entite {
     private String nom;
     private int nombreDeVies;
     private boolean vivant;

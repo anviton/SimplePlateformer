@@ -1,4 +1,4 @@
-package modele;
+package modele.metier;
 
 public abstract class Composant {
     private int positionY;

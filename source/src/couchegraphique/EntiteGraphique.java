@@ -1,7 +1,6 @@
 package couchegraphique;
 
-import javafx.scene.image.Image;
-import modele.Entite;
+import modele.metier.Entite;
 
 public class EntiteGraphique extends ProduitGraphique{
     private Entite entite;

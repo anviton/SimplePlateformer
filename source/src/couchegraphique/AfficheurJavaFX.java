@@ -3,7 +3,10 @@ package couchegraphique;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import modele.*;
+import modele.logique.Afficheur;
+import modele.metier.Bloc;
+import modele.metier.Niveau;
+import modele.metier.Personnage;
 
 import java.util.ArrayList;
 import java.util.List;

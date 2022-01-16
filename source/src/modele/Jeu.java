@@ -1,9 +1,15 @@
 package modele;
 
+import controleurs.ControleurObservateur;
 import couchegraphique.AfficheurJavaFX;
 import couchegraphique.DeplaceurJavaFX;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
+import modele.logique.Afficheur;
+import modele.logique.Deplaceur;
+import modele.metier.HitBox;
+import modele.metier.Niveau;
+import modele.metier.Personnage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +17,7 @@ import java.util.List;
 public class Jeu implements Runnable{
 
     private Thread threadInterne;
+    private List<ControleurObservateur> observateurs;
     private int chrono = 0;
     private boolean jeuEnCours;
     private Deplaceur deplaceur;
@@ -21,6 +28,7 @@ public class Jeu implements Runnable{
 
     public Jeu(Niveau niveauLance) {
         this.niveauLance = niveauLance;
+        this.observateurs = new ArrayList<>();
     }
 
     public void lancerBoucleDeJeu(){
@@ -72,11 +80,8 @@ public class Jeu implements Runnable{
             afficheur.mettreAjourLAffichageDuPersonnagePrincipal(perso, positionXAvant, positionYAvant);
             jeuEnCours = verificationVictoire(perso);
         }
-        try {
-            threadInterne.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        this.nottifier();
+        //threadInterne.stop();
     }
 
     private Personnage initialiserLeJeu(){
@@ -90,8 +95,8 @@ public class Jeu implements Runnable{
         afficheur.afficherLeNiveau(niveauLance, listeCheminImageBloc, perso);
         deplaceur.setNiveau(niveauLance);
         deplaceur.deplacerPersonnagePrincipal(perso);
-        stockagePosition = new StockagePosition();
-        stockagePosition.ajouterUnePosition(perso.creerMemento());
+        //stockagePosition = new StockagePosition();
+        //stockagePosition.ajouterUnePosition(perso.creerMemento());
         jeuEnCours = true;
         return perso;
     }
@@ -99,6 +104,20 @@ public class Jeu implements Runnable{
     private boolean verificationVictoire(Personnage perso){
         return niveauLance.getPositionXArrivee() != perso.getPositionX() ||
                 niveauLance.getPositionYArrivee() != perso.getPositionY();
+    }
+
+    public void nottifier(){
+        for(ControleurObservateur o : observateurs){
+            o.mettreAJour();
+        }
+    }
+
+    public void attacher(ControleurObservateur observateur){
+        observateurs.add(observateur);
+    }
+
+    public void detacher(ControleurObservateur observateur){
+        observateurs.remove(observateur);
     }
 
     public boolean isJeuEnCours() {

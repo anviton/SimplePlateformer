@@ -1,7 +1,7 @@
 package couchegraphique;
 
-import modele.Composant;
-import modele.Entite;
+import modele.metier.Composant;
+import modele.metier.Entite;
 
 public class FabriqueDEntiteGraphique extends FabriqueDeProduitGraphique{
 

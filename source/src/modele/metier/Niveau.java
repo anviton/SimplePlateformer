@@ -1,4 +1,6 @@
-package modele;
+package modele.metier;
+
+import modele.metier.Bloc;
 
 import java.util.List;
 

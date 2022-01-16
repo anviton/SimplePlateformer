@@ -1,7 +1,7 @@
 package couchegraphique;
 
-import modele.Bloc;
-import modele.Composant;
+import modele.metier.Bloc;
+import modele.metier.Composant;
 
 public class FabriqueDeBlocGrapqhique extends FabriqueDeProduitGraphique{
 

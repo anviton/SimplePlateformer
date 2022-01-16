@@ -1,6 +1,6 @@
 package couchegraphique;
 
-import modele.Composant;
+import modele.metier.Composant;
 
 public abstract class FabriqueDeProduitGraphique {
     public ProduitGraphique produit;

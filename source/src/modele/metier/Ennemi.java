@@ -1,6 +1,6 @@
-package modele;
+package modele.metier;
 
-public class Ennemi extends Personnage{
+public class Ennemi extends Personnage {
     public Ennemi(String nom, int posX, int posY, HitBox collision) {
         super(nom, posX, posY, collision);
     }

@@ -1,4 +1,7 @@
-package modele;
+package modele.logique;
+
+import modele.metier.Niveau;
+import modele.metier.Personnage;
 
 public abstract class Deplaceur {
     protected Niveau niveau;

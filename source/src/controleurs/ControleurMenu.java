@@ -1,5 +1,6 @@
 package controleurs;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +14,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import modele.*;
+import modele.logique.ChargeurNiveau;
+import modele.metier.Niveau;
 
 import java.io.IOException;
+import java.util.Objects;
 
-public class ControleurMenu {
+public class ControleurMenu extends ControleurObservateur{
+
+    private Jeu jeu;
+    Stage stage;
     @FXML
     //private VBox box;
 
@@ -43,7 +50,7 @@ public class ControleurMenu {
         ChargeurNiveau chargeur =  new ChargeurNiveau();
         Niveau n = chargeur.chargerNiveau("resources/niveaux/niveau1.niv");
 
-        Stage stage = (Stage) b.getScene().getWindow();
+        this.stage = (Stage) b.getScene().getWindow();
         stage.setMaximized(true);
         Canvas c = new Canvas((n.getLargeurNiveau() + 1) * 50, (n.getHauteurNiveau() + 1) * 50);
         GraphicsContext gc = c.getGraphicsContext2D();
@@ -58,8 +65,30 @@ public class ControleurMenu {
         Scene s = b.getScene();
         stage.setTitle("Niveau1");
         s.setRoot(scrollPane);
-        Jeu j = new Jeu(n);
-        j.lancerBoucleDeJeu(gc, s);
+        jeu = new Jeu(n);
+        jeu.lancerBoucleDeJeu(gc, s);
+        jeu.attacher(this);
 
+    }
+
+    @Override
+    public void mettreAJour(){
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                stage.setMaximized(false);
+                GridPane a = null;
+                try {
+                    a = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/vues/nouveauScore.fxml")));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Scene s = new Scene(a, 1000, 1000);
+                s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
+                stage.setTitle("Score");
+                stage.setScene(s);
+                stage.show();
+            }
+        });
     }
 }

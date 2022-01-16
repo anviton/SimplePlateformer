@@ -1,6 +1,9 @@
 package modele;
 
-public class Objet extends Entite{
+import modele.metier.Entite;
+import modele.metier.HitBox;
+
+public class Objet extends Entite {
     private String nomObj;
     private String description;
 

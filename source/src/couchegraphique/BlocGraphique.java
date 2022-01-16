@@ -2,7 +2,7 @@ package couchegraphique;
 
 
 import javafx.scene.image.Image;
-import modele.Bloc;
+import modele.metier.Bloc;
 
 public class  BlocGraphique extends ProduitGraphique {
     Bloc bloc;

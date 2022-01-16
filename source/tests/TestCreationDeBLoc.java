@@ -1,4 +1,5 @@
-import modele.*;
+import modele.logique.ChargeurNiveau;
+import modele.metier.Niveau;
 
 import java.util.ArrayList;
 import java.util.List;

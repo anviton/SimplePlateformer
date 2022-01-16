@@ -1,8 +1,8 @@
 package couchegraphique;
 
-import modele.Afficheur;
-import modele.Entite;
-import modele.HitBox;
+import modele.logique.Afficheur;
+import modele.metier.Entite;
+import modele.metier.HitBox;
 
 public class ObjetGraphique extends Entite {
     public ObjetGraphique(int posX, int posY, HitBox hitbox){
