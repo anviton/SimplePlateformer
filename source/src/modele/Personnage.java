@@ -39,6 +39,7 @@ public class Personnage extends Entite{
 
     public void setNbObjets(int nbObjets) { this.nbObjets = nbObjets; }
 
+
     @Override
     public String toString() {
         String message;

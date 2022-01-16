@@ -1,5 +1,7 @@
 package modele;
 
+import couchegraphique.ObjetGraphique;
+
 import java.util.List;
 
 public abstract class Afficheur {

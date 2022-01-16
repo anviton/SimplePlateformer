@@ -1,36 +1,23 @@
 package modele;
 
-public abstract class Entite implements Runnable{
-    private int positionX;
-    private int positionY;
-    private HitBox hitbox;
+public abstract class Entite extends Composant implements Runnable{
+
 
     public Entite(int posX, int posY, HitBox hb){
-        this.positionX = posX;
-        this.positionY = posY;
-        this.hitbox = hb;
+        super(posX, posX, hb);
     }
 
     @Override
     public void run() { System.out.println("Coucou"); }
 
     public Position creerMemento(){
-        return new Position(this.positionX, this.positionY);
+        return new Position(this.getPositionX(), this.getPositionY());
     }
 
     public void setCoordonnees(Position position){
-        this.positionX = position.getX();
-        this.positionX = position.getY();
+        this.setPositionX(position.getX());
+        this.setPositionY(position.getY());
     }
-    public int getPositionX() { return positionX; }
 
-    public void setPositionX(int positionX) { this.positionX = positionX; }
 
-    public int getPositionY() { return positionY; }
-
-    public void setPositionY(int positionY) { this.positionY = positionY; }
-
-    public HitBox getHitbox() { return hitbox; }
-
-    public void setHitbox(HitBox hitbox) { this.hitbox = hitbox; }
 }

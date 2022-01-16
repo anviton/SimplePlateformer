@@ -1,8 +1,11 @@
-package modele;
+package couchegraphique;
 
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import modele.Collisionneur;
+import modele.Deplaceur;
+import modele.Personnage;
 
 //import java.util.ArrayList;
 import java.util.List;

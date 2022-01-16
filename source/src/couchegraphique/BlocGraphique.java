@@ -1,15 +1,15 @@
-package modele;
+package couchegraphique;
 
 
 import javafx.scene.image.Image;
+import modele.Bloc;
 
-public class  BlocGraphique {
-    Image image;
+public class  BlocGraphique extends ProduitGraphique {
     Bloc bloc;
 
     public BlocGraphique(Bloc bloc, String cheminImg) {
+        super(cheminImg);
         this.bloc = bloc;
-        this.image = new Image(String.valueOf(getClass().getResource(cheminImg)));
     }
 
     public Bloc getBloc() {

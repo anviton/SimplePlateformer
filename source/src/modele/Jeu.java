@@ -1,6 +1,7 @@
 package modele;
 
-import controleurs.ControleurMenu;
+import couchegraphique.AfficheurJavaFX;
+import couchegraphique.DeplaceurJavaFX;
 import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 

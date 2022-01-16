@@ -1,18 +1,14 @@
-package modele;
+package couchegraphique;
 
 import javafx.scene.image.Image;
+import modele.Entite;
 
-public class EntiteGraphique {
-    private Image image;
+public class EntiteGraphique extends ProduitGraphique{
     private Entite entite;
 
     public EntiteGraphique(Entite entite, String cheminImg) {
+        super(cheminImg);
         this.entite = entite;
-        this.image = new Image(String.valueOf(getClass().getResource(cheminImg)));
-    }
-
-    public Image getImage() {
-        return image;
     }
 
     public Entite getEntite() {

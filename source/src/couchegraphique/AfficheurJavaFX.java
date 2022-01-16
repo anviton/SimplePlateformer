@@ -1,13 +1,14 @@
-package modele;
+package couchegraphique;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import modele.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AfficheurJavaFX extends Afficheur{
+public class AfficheurJavaFX extends Afficheur {
     private final GraphicsContext gc;
     private final List<EntiteGraphique> listeEntitesGraphiques;
     private static final int TAILLE = 50;
@@ -23,17 +24,19 @@ public class AfficheurJavaFX extends Afficheur{
                 ancienPositionY != listeEntitesGraphiques.get(0).getEntite().getPositionY()) {
             this.gc.drawImage(listeEntitesGraphiques.get(0).getImage(), listeEntitesGraphiques.get(0).getEntite().getPositionX()*TAILLE,
                     listeEntitesGraphiques.get(0).getEntite().getPositionY()*TAILLE, TAILLE, TAILLE);
-            this.gc.clearRect(ancienPositionX * TAILLE, ancienPositionY * TAILLE, p.getHitbox().getLargeur(),
-                    p.getHitbox().getHauteur());
+            this.gc.clearRect(ancienPositionX * TAILLE, ancienPositionY * TAILLE, p.getHitBox().getLargeur(),
+                    p.getHitBox().getHauteur());
         }
 
     }
 
     @Override
     public void afficherLeNiveau(Niveau n, List<String> cheminImagesBlocs, Personnage perso){
-        listeEntitesGraphiques.add(new EntiteGraphique(perso, "/personnage.png"));
+        FabriqueDeProduitGraphique fabrique=  new FabriqueDEntiteGraphique();
+        listeEntitesGraphiques.add((EntiteGraphique) fabrique.fabrique(perso, "/personnage.png"));
+        fabrique = new FabriqueDeBlocGrapqhique();
         for (Bloc bloc : n.getListeBlocs() ) {
-            BlocGraphique blocGraphique = new BlocGraphique(bloc, cheminImagesBlocs.get(bloc.getType()));
+            BlocGraphique blocGraphique = (BlocGraphique) fabrique.fabrique(bloc, cheminImagesBlocs.get(bloc.getType()));
             this.gc.drawImage(blocGraphique.getImage(), blocGraphique.getBloc().getPositionX()*TAILLE,
                     blocGraphique.getBloc().getPositionY()*TAILLE, TAILLE, TAILLE);
         }
