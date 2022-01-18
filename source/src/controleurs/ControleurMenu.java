@@ -36,8 +36,8 @@ public class ControleurMenu extends ControleurObservateur{
 
     public void afficheOption(ActionEvent buttonOption) throws IOException {
         Stage fenetreOption = new Stage();
-        AnchorPane a;
-        a = FXMLLoader.load(getClass().getResource("/vues/options.fxml"));
+        BorderPane a;
+        a = FXMLLoader.load(getClass().getResource("/vues/listeScores.fxml"));
         Scene s = new Scene(a, 500, 500);
         fenetreOption.setTitle("Options");
         s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
@@ -78,11 +78,16 @@ public class ControleurMenu extends ControleurObservateur{
             public void run() {
                 stage.setMaximized(false);
                 GridPane a = null;
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vues/nouveauScore.fxml"));
+                fxmlLoader.setController(new ControleurNouveauScore(new Score(jeu.getChrono(), "t", 1)));
                 try {
-                    a = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/vues/nouveauScore.fxml")));
+                    a = fxmlLoader.load();
+                    //a = fxmlLoader.load(Objects.requireNonNull(getClass().getResource("/vues/nouveauScore.fxml")));
+                    //a = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/vues/nouveauScore.fxml")));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 Scene s = new Scene(a, 1000, 1000);
                 s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
                 stage.setTitle("Score");

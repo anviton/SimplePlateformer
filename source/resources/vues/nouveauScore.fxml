@@ -8,7 +8,6 @@
 
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controleurs.ControleurMenu"
             prefHeight="400.0" prefWidth="600.0">
     <rowConstraints>
         <RowConstraints percentHeight="25"/>
@@ -18,8 +17,10 @@
     </rowConstraints>
     <Label textAlignment="CENTER" GridPane.rowIndex="1" alignment="TOP_CENTER" fx:id="Titre" styleClass="Titre" text="Sauvegarde de votre score"/>
     <VBox alignment="CENTER" GridPane.rowIndex="2" spacing="5">
-        <TextField></TextField>
-        <Button text="Rejoueur" styleClass="BoutonCentre" onAction="#afficheNiveau"/>
+        <Label fx:id="labelScore"/>
+        <TextField fx:id="textField" />
+        <Label text="${textField.text}" />
+        <Button text="Valider" styleClass="BoutonCentre" onAction="#valideScore"/>
     </VBox>
 
 </GridPane>
