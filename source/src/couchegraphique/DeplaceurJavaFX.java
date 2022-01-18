@@ -39,15 +39,16 @@ public class DeplaceurJavaFX extends Deplaceur {
     @Override
     public boolean gererLaGravite(Personnage perso){
         boolean collision = collisionneur.verifCollisionEnDessous(perso, niveau);
-        //boolean collisionBombe = collisionneur.verifCollisionBombeEnDessous(perso, niveau);
-        /*if (!collision){
-            saut = true;
-        }*/
-        //if (!collisionBombe){
+        boolean collisionBombe = collisionneur.verifCollisionBombeEnDessous(perso, niveau);
+        if (collisionBombe){
             if (!collision){
                 saut = true;
             }
-        //}
+        }
+        else {
+            perso.setPositionX(niveau.getPositionXDepart());
+            perso.setPositionY(niveau.getPositionYDepart());
+        }
         return collision;
     }
 
@@ -56,13 +57,14 @@ public class DeplaceurJavaFX extends Deplaceur {
         List<Boolean> collisionsBombeSaut = collisionneur.verifcollisionBombeSaut(perso, niveau);
         int tailleSaut = 0;
         for (int i = 0; i < 4; i++) {
-            /*if (collisionsSaut.get(i)) {
-                tailleSaut++;
-            }*/
             if (collisionsBombeSaut.get(i)){
                 if (collisionsSaut.get(i)){
                     tailleSaut++;
                 }
+            }
+            else {
+                perso.setPositionX(niveau.getPositionXDepart());
+                perso.setPositionY(niveau.getPositionYDepart());
             }
         }
         if (saut) {
@@ -72,24 +74,26 @@ public class DeplaceurJavaFX extends Deplaceur {
     }
 
     private void seDeplacerAGauche(Personnage perso){
-        /*if(collisionneur.verifCollisionAGauche(perso, niveau)) {
-            perso.setPositionX(perso.getPositionX() - 1);
-        }*/
         if(collisionneur.verifCollisionBombeAGauche(perso, niveau)){
             if(collisionneur.verifCollisionAGauche(perso, niveau)){
                 perso.setPositionX(perso.getPositionX() - 1);
             }
         }
+        else {
+            perso.setPositionX(niveau.getPositionXDepart());
+            perso.setPositionY(niveau.getPositionYDepart());
+        }
     }
 
     private void seDeplacerADroite(Personnage perso){
-        /*if(collisionneur.verifCollisionADroite(perso, niveau)) {
-            perso.setPositionX(perso.getPositionX() + 1);
-        }*/
         if(collisionneur.verifCollisionBombeADroite(perso, niveau)){
             if(collisionneur.verifCollisionADroite(perso, niveau)){
                 perso.setPositionX(perso.getPositionX() + 1);
             }
+        }
+        else {
+            perso.setPositionX(niveau.getPositionXDepart());
+            perso.setPositionY(niveau.getPositionYDepart());
         }
     }
 }

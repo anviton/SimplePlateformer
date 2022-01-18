@@ -73,7 +73,7 @@ public class Collisionneur {
         return gravite;
     }
 
-    /*public boolean verifCollisionBombeEnDessous(Personnage perso, Niveau niveau){
+    public boolean verifCollisionBombeEnDessous(Personnage perso, Niveau niveau){
         boolean collisionBombe = true;
         for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
             Bloc bloc = niveau.getListeBlocs().get(i);
@@ -84,7 +84,7 @@ public class Collisionneur {
             }
         }
         return collisionBombe;
-    }*/
+    }
 
     public List<Boolean> verifcollisionSaut(Personnage perso, Niveau niveau){
         List<Boolean> collisionsSaut = new ArrayList<>();
