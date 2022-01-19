@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StockagePosition {
-    private List<Position> listePositions;
+    private final List<Position> listePositions;
 
     public StockagePosition() {
         this.listePositions = new ArrayList<>();

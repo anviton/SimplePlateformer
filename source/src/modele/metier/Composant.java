@@ -3,7 +3,7 @@ package modele.metier;
 public abstract class Composant {
     private int positionY;
     private int positionX;
-    private HitBox hitBox;
+    private final HitBox hitBox;
 
     public Composant(int positionX, int positionY, HitBox hitBox) {
         this.positionY = positionY;

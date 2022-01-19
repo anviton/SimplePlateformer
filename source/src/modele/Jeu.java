@@ -32,8 +32,8 @@ public class Jeu implements Runnable{
     }
 
     public void lancerBoucleDeJeu(){
-        /*threadInterne = new Thread(this);
-        threadInterne.start();*/
+        threadInterne = new Thread(this);
+        threadInterne.start();
     }
 
     public void lancerBoucleDeJeu(GraphicsContext gc, Scene s){
@@ -81,7 +81,6 @@ public class Jeu implements Runnable{
             jeuEnCours = verificationVictoire(perso);
         }
         this.nottifier();
-        //threadInterne.stop();
     }
 
     private Personnage initialiserLeJeu(){
@@ -120,13 +119,6 @@ public class Jeu implements Runnable{
         observateurs.remove(observateur);
     }
 
-    public boolean isJeuEnCours() {
-        return jeuEnCours;
-    }
-
-    public Thread getThreadInterne() {
-        return threadInterne;
-    }
 
     public int getChrono() {
         return chrono;

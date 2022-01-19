@@ -2,15 +2,7 @@ package modele.metier;
 
 public class Bloc extends Composant {
 
-    private int type;
-
-
-    /*public Bloc(int type, int positionX, int positionY) {
-        this.type = type;
-        this.positionX = positionX;
-        this.positionY = positionY;
-        this.hitBox = new HitBox(300, 300);
-    }*/
+    private final int type;
 
     public Bloc(int type, int positionX, int positionY, HitBox hitBox) {
         super(positionX, positionY, hitBox);
@@ -19,10 +11,6 @@ public class Bloc extends Composant {
 
     public int getType() {
         return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
     }
 
 

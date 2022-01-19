@@ -1,8 +1,8 @@
 package modele.metier;
 
 public class HitBox {
-    private int hauteur;
-    private int largeur;
+    private final int hauteur;
+    private final int largeur;
 
     public HitBox(int hauteur, int largeur) {
         this.hauteur = hauteur;
@@ -14,15 +14,9 @@ public class HitBox {
         return hauteur;
     }
 
-    private void setHauteur(int hauteur) {
-        this.hauteur = hauteur;
-    }
 
     public int getLargeur() { return largeur; }
 
-    private void setLargeur(int largeur) {
-        this.largeur = largeur;
-    }
 
     @Override
     public String toString() {

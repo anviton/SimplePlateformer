@@ -6,10 +6,8 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 
-public class Score{
-    /*private final int temps;
-    private final String nom;
-    private final int numNiveau;*/
+public class Score implements Comparable{
+
     private final StringProperty nom = new SimpleStringProperty();
     public String getNom() {return nom.get();}
     public void setNom(String value) {nom.set(value);}
@@ -32,16 +30,21 @@ public class Score{
         this.nom.setValue(nom);
     }
 
-    /*public int getTemps() {
-        return temps;
+    @Override
+    public int compareTo(Object o) {
+        if (this.getTemps() > ((Score)o).getTemps()){
+            return 0;
+        }
+        return -1;
     }
 
-    public String getNom() {
-        return nom;
+    @Override
+    public String toString() {
+        return "Score{" +
+                "nom=" + nom +
+                ", numNiveau=" + numNiveau +
+                ", temps=" + temps +
+                '}';
     }
-
-    public int getNumNiveau() {
-        return numNiveau;
-    }*/
 
 }

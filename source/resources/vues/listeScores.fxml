@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 
 
-<BorderPane  xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="controleurs.ControleurListeScores">
+<BorderPane  xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
     <center>
         <TableView fx:id="table" BorderPane.alignment="CENTER" />
     </center>

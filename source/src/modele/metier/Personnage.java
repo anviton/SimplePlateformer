@@ -1,19 +1,15 @@
 package modele.metier;
 
-import modele.Objet;
-
 public class Personnage extends Entite {
-    private String nom;
+    private final String nom;
     private int nombreDeVies;
-    private boolean vivant;
-    private Objet[] listObjets = new Objet[3]; // le personnage peut posséder 3 objets simultanément maximum
+    private final Objet[] listObjets = new Objet[3]; // le personnage peut posséder 3 objets simultanément maximum
     private int nbObjets;
 
     public Personnage(String nom, int posX, int posY, HitBox hitbox) {
         super(posX, posY, hitbox);
         this.nom=nom;
         this.nombreDeVies = 3;
-        this.vivant = true;
         this.nbObjets = 0;
     }
 
@@ -27,14 +23,6 @@ public class Personnage extends Entite {
         this.nombreDeVies = nombreDeVies;
     }
 
-    public boolean getVivant() {
-        return vivant;
-    }
-
-    public void setVivant(boolean vivant) {
-        this.vivant = vivant;
-    }
-
     public Objet[] getListObjets() { return listObjets; }
 
     public int getNbObjets() { return nbObjets; }
@@ -44,18 +32,18 @@ public class Personnage extends Entite {
 
     @Override
     public String toString() {
-        String message;
-        message = "Personnage{" + super.toString() +
+        StringBuilder message;
+        message = new StringBuilder("Personnage{" + super.toString() +
                 ", nom=" + nom +
                 ", nombre de vies=" + nombreDeVies +
-                ", liste d'objet : " + nbObjets + " ";
-                for (int i=0; i < listObjets.length; i++) {
-                    if(listObjets[i] == null){
-                        return message;
-                    }
-                    message = message + listObjets[i].getNomObj() + " --> " + listObjets[i].getDescription() + " / ";
-                }
-        return message;
+                ", liste d'objet : " + nbObjets + " ");
+        for (Objet listObjet : listObjets) {
+            if (listObjet == null) {
+                return message.toString();
+            }
+            message.append(listObjet.getNomObj()).append(" --> ").append(listObjet.getDescription()).append(" / ");
+        }
+        return message.toString();
     }
 
     public int mourir(){

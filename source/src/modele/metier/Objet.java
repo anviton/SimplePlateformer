@@ -1,11 +1,10 @@
-package modele;
+package modele.metier;
 
-import modele.metier.Entite;
-import modele.metier.HitBox;
+
 
 public class Objet extends Entite {
-    private String nomObj;
-    private String description;
+    private final String nomObj;
+    private final String description;
 
     public Objet(String nom, String description, int posX, int posY, HitBox hitbox){
         super(posX, posY, hitbox);

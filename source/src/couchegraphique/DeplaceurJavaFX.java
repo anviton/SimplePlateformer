@@ -54,10 +54,10 @@ public class DeplaceurJavaFX extends Deplaceur {
 
     private void sauter(Personnage perso){
         List<Boolean> collisionsSaut = collisionneur.verifcollisionSaut(perso, niveau);
-        List<Boolean> collisionsBombeSaut = collisionneur.verifcollisionBombeSaut(perso, niveau);
+        //List<Boolean> collisionsBombeSaut = collisionneur.verifcollisionBombeSaut(perso, niveau);
         int tailleSaut = 0;
         for (int i = 0; i < 4; i++) {
-            if (collisionsBombeSaut.get(i)){
+            /*if (collisionsBombeSaut.get(i)){
                 if (collisionsSaut.get(i)){
                     tailleSaut++;
                 }
@@ -65,6 +65,9 @@ public class DeplaceurJavaFX extends Deplaceur {
             else {
                 perso.setPositionX(niveau.getPositionXDepart());
                 perso.setPositionY(niveau.getPositionYDepart());
+            }*/
+            if (collisionsSaut.get(i)){
+                tailleSaut++;
             }
         }
         if (saut) {

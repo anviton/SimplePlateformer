@@ -18,10 +18,6 @@ public class ChargeurNiveau {
         String elementDeSeparation = ",";
         String cheminFond = null;
         try {
-            /*String cheminTest = String.valueOf(getClass().getResource(chemin));
-            System.out.println(cheminTest);
-            File f =new File(cheminTest);
-            System.out.println(f);*/
             FileReader lecteur = new FileReader(chemin);
             BufferedReader lecteurDeTuile = new BufferedReader(lecteur);
             String ligne;

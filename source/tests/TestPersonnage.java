@@ -1,7 +1,7 @@
 
 import modele.metier.HitBox;
 import modele.metier.Personnage;
-import modele.Objet;
+import modele.metier.Objet;
 
 public class TestPersonnage {
 

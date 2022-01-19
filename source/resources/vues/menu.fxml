@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
 
 <GridPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="400.0" prefWidth="600.0"
-            fx:controller="controleurs.ControleurMenu"
             styleClass="grille" alignment="CENTER">
     <rowConstraints>
         <RowConstraints percentHeight="25"/>
@@ -20,9 +15,9 @@
         <RowConstraints percentHeight="25"/>
     </rowConstraints>
     <Label textAlignment="CENTER" GridPane.rowIndex="1" alignment="TOP_CENTER" fx:id="Titre" styleClass="Titre" text="Simple plateformer"/>
-        <VBox alignment="CENTER" GridPane.rowIndex="2" spacing="5">
-            <Button text="Niveaux" styleClass="BoutonCentre" onAction="#afficheNiveau"/>
-            <Button text="Scores" styleClass="BoutonCentre" onAction="#afficheOption"/>
-            <Button text="Quitter" styleClass="BoutonCentre" onAction="#quitter"/>
-        </VBox>
+    <VBox alignment="CENTER" GridPane.rowIndex="2" spacing="5">
+        <Button text="Jouer" styleClass="BoutonCentre" onAction="#afficheNiveau"/>
+        <Button text="Scores" styleClass="BoutonCentre" onAction="#afficheScores"/>
+        <Button text="Quitter" styleClass="BoutonCentre" onAction="#quitter"/>
+    </VBox>
 </GridPane>

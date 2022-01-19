@@ -1,26 +1,19 @@
 package modele.metier;
 
-import modele.metier.Bloc;
 
 import java.util.List;
 
 public class Niveau {
-    private int difficulte;
-    private int positionXArrivee;
-    private int positionYArrivee;
-    private int positionXDepart;
-    private int positionYDepart;
+    private final int positionXArrivee;
+    private final int positionYArrivee;
+    private final int positionXDepart;
+    private final int positionYDepart;
     private int hauteurNiveau;
     private int largeurNiveau;
-    private String cheminFond;
+    private final String cheminFond;
     private final List<Bloc> listeBlocs;
 
 
-    public Niveau(List<Bloc> listeBlocs, String cheminFond) {
-        this.listeBlocs = listeBlocs;
-        this.cheminFond = cheminFond;
-        difficulte = 1;
-    }
 
     public Niveau(List<Integer> positions,
                   String cheminFond, List<Bloc> listeBlocs) {
@@ -34,14 +27,6 @@ public class Niveau {
 
     public List<Bloc> getListeBlocs() {
         return listeBlocs;
-    }
-
-    public int getDifficulte() {
-        return difficulte;
-    }
-
-    public void setDifficulte(int difficulte) {
-        this.difficulte = difficulte;
     }
 
     public int getHauteurNiveau() {
@@ -62,10 +47,6 @@ public class Niveau {
 
     public String getCheminFond() {
         return cheminFond;
-    }
-
-    private void setCheminFond(String cheminFond) {
-        this.cheminFond = cheminFond;
     }
 
     public int getPositionXArrivee() {

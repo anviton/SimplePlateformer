@@ -3,7 +3,7 @@ package couchegraphique;
 import modele.metier.Entite;
 
 public class EntiteGraphique extends ProduitGraphique{
-    private Entite entite;
+    private final Entite entite;
 
     public EntiteGraphique(Entite entite, String cheminImg) {
         super(cheminImg);
@@ -12,10 +12,6 @@ public class EntiteGraphique extends ProduitGraphique{
 
     public Entite getEntite() {
         return entite;
-    }
-
-    private void setEntite(Entite entite) {
-        this.entite = entite;
     }
 
     @Override
