@@ -1,11 +1,8 @@
 package controleurs;
 
-import couchegraphique.AfficheurJavaFX;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -19,38 +16,31 @@ import modele.*;
 import modele.logique.ChargeurNiveau;
 import modele.LesScores;
 import modele.metier.Niveau;
-
 import java.io.IOException;
-import java.net.URL;
-import java.util.Objects;
 
+/**
+ * ControleurNiveau permet de controler la vue des niveaux
+ * @author anviton khloichet
+ */
 public class ControleurNiveaux extends ControleurObservateur{
 
     private Jeu jeu;
     private Stage stage;
-    private LesScores lesScores;
+    private final LesScores lesScores;
     private int numNiveau;
 
+    /**
+     * Constructeur du ControleurNiveaux
+     * @param lesScores vient setter l'attribut lesScores
+     */
     public ControleurNiveaux(LesScores lesScores) {
         this.lesScores = lesScores;
     }
 
-    /*public void toNiveau(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(Objects.requireNonNull(AfficheurJavaFX.class.getResource("/vues/niveaux.fxml")));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(root, 1000, 1000);
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-        URL vue = getClass().getResource("/vues/niveaux.fxml");
-        Parent parent = FXMLLoader.load(vue);
-        Scene scene = new Scene(parent);
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("style.css")).toExternalForm());
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
+    /**
+     * Permet de mettre en place les paramètres du niveau1
+     * @param bouttonNiveau événement qui a appelé la méthode
+     */
     public void afficheNiveau1(ActionEvent bouttonNiveau){
         Button b = (Button)bouttonNiveau.getSource();
         String chemin = "resources/niveaux/niveau1.niv";
@@ -60,6 +50,10 @@ public class ControleurNiveaux extends ControleurObservateur{
 
     }
 
+    /**
+     * Permet de mettre en place les paramètres du niveau2
+     * @param bouttonNiveau événement qui a appelé la méthode
+     */
     public void afficheNiveau2(ActionEvent bouttonNiveau){
         Button b = (Button)bouttonNiveau.getSource();
         String chemin = "resources/niveaux/niveau2.niv";
@@ -69,6 +63,10 @@ public class ControleurNiveaux extends ControleurObservateur{
 
     }
 
+    /**
+     * Permet de mettre en place les paramètres du niveau2
+     * @param bouttonNiveau événement qui a appelé la méthode
+     */
     public void afficheNiveau3(ActionEvent bouttonNiveau){
         Button b = (Button)bouttonNiveau.getSource();
         String chemin = "resources/niveaux/niveau3.niv";
@@ -77,6 +75,9 @@ public class ControleurNiveaux extends ControleurObservateur{
         this.lancerNiveau(b, chemin, nomNiveau);
     }
 
+    /**
+     * Permet d'afficher la vue d'enregistrement du score
+     */
     @Override
     public void mettreAJour(){
         Platform.runLater(new Runnable() {
@@ -101,6 +102,12 @@ public class ControleurNiveaux extends ControleurObservateur{
         });
     }
 
+    /**
+     * Permet de lancer un niveau
+     * @param b bouton qui génère l'appel
+     * @param chemin chemin du niveau a lancé
+     * @param nomNiveau nom du niveau a lancé
+     */
     private void lancerNiveau(Button b, String chemin, String nomNiveau){
         ChargeurNiveau chargeur =  new ChargeurNiveau();
         Niveau n = chargeur.chargerNiveau(chemin);

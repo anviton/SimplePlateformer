@@ -15,29 +15,44 @@ import modele.logique.GestionnaireDeFichiers;
 import modele.Score;
 import modele.LesScores;
 
-import java.io.IOException;
 
+/**
+ * Controleur qui permet de gérer la vue permettant d'enregistrer un nouveau score
+ * @author anviton khloichet
+ */
 public class ControleurNouveauScore {
     @FXML
     private TextField textField;
     @FXML
     private Label labelScore;
 
-    private final Score score ;//= new Score(20, "t", 1);
-    private LesScores lesScores;
+    private final Score score ;
+    private final LesScores lesScores;
 
+    /**
+     * Contstructeur ControleurNouveauScore
+     * @param lesScores vient setter l'attribut lesScores
+     * @param score vient setter l'attribut Score
+     */
     public ControleurNouveauScore(LesScores lesScores, Score score) {
         this.score = score;
         this.lesScores = lesScores;
     }
 
+    /**
+     * Initialise le textfFeld et le labelScore grâce au binding
+     */
     public void initialize() {
         StringConverter<Integer> converter = new IntegerStringConverter();
         textField.textProperty().bindBidirectional(score.nomProperty());
         labelScore.textProperty().bindBidirectional(score.tempsProperty(), converter);
     }
 
-
+    /**
+     * Permet de valider l'ajout du score dans la liste des scores
+     * et appelle la vue du menu
+     * @param bouttonValider événement qui a appelé la méthode
+     */
     public void valideScore(ActionEvent bouttonValider) {
         Button b = (Button)bouttonValider.getSource();
         Stage stage = (Stage) b.getScene().getWindow();
@@ -47,18 +62,14 @@ public class ControleurNouveauScore {
         lesScores.trierLesScores();
         try {
             GestionnaireDeFichiers.ecriture(lesScores, "resources/score/score.txt");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        fxmlLoader.setController(new ControleurMenu(lesScores));
-        try {
+            fxmlLoader.setController(new ControleurMenu(lesScores));
             a = fxmlLoader.load();
             Scene s = new Scene(a, 1000, 1000);
             s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
             stage.setTitle("Menu Principal");
             stage.setScene(s);
             stage.show();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

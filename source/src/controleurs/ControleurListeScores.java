@@ -7,21 +7,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import modele.Score;
 import modele.LesScores;
 
-
+/**
+ * ControleurListeScores permet de controler la vue des scores.
+ */
 public class ControleurListeScores {
     @FXML
     private TableView<Score> table;
 
-    private LesScores lesScores;
+    private final LesScores lesScores;
 
     private final TableColumn<Score, String> columnNom = new TableColumn<>("Nom");
     private final TableColumn<Score, Integer> colonneNiveau = new TableColumn<>("Niveau");
     private final TableColumn<Score, Integer> colonneTemps = new TableColumn<>("Temps");
 
+    /**
+     * Constructeur du ControleurListeScores
+     * @param lesScores vient setter l'attribut lesScores
+     */
     public ControleurListeScores(LesScores lesScores) {
         this.lesScores = lesScores;
     }
 
+    /**
+     * Intialise la table des scores et ses colonnes
+     */
     public void initialize() {
         columnNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         table.getColumns().add(columnNom);
