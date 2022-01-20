@@ -9,7 +9,7 @@ public class Musique {
     private Thread musiqueThread;
 
     public void playSound(){
-        String musicFile = "C:\\Users\\khris\\Documents\\2A\\Projet_Java2\\projet_conception_prog_obj\\source\\resources\\musique\\drm64_wario4.wav";     // For example
+        /*String musicFile = "resources/musique/drm64_wario4.wav";     // For example
         Media sound = new Media(new File(musicFile).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         musiqueThread  = new Thread(() -> {
@@ -17,7 +17,7 @@ public class Musique {
                 mediaPlayer.play();
             }
         });
-        musiqueThread.start();
+        musiqueThread.start();*/
     }
 
     /*public void stopMusique(){
