@@ -739,32 +739,12 @@
 									"model": {
 										"$ref": "AAAAAAF9fzO5rT44wUo="
 									},
-									"subViews": [
-										{
-											"_type": "UMLOperationView",
-											"_id": "AAAAAAF9f1+qltO2wgk=",
-											"_parent": {
-												"$ref": "AAAAAAF9fzO5rj5BrCY="
-											},
-											"model": {
-												"$ref": "AAAAAAF9f1+qgNOz1gk="
-											},
-											"fillColor": "#6dceff",
-											"font": "Arial;13;0",
-											"left": 1853,
-											"top": 645,
-											"width": 166,
-											"height": 13,
-											"text": "+Operation1()",
-											"horizontalAlignment": 0
-										}
-									],
 									"fillColor": "#6dceff",
 									"font": "Arial;13;0",
 									"left": 1848,
 									"top": 640,
 									"width": 176,
-									"height": 23
+									"height": 10
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -3551,8 +3531,8 @@
 									"visible": false,
 									"fillColor": "#6dceff",
 									"font": "Arial;13;0",
-									"left": 928,
-									"top": 648,
+									"left": 920,
+									"top": 584,
 									"width": 10,
 									"height": 10
 								},
@@ -3568,8 +3548,8 @@
 									"visible": false,
 									"fillColor": "#6dceff",
 									"font": "Arial;13;0",
-									"left": 928,
-									"top": 648,
+									"left": 920,
+									"top": 584,
 									"width": 10,
 									"height": 10
 								}
@@ -10135,16 +10115,6 @@
 							"name": "toucheAvantMort",
 							"visibility": "private",
 							"type": "int"
-						}
-					],
-					"operations": [
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAF9f1+qgNOz1gk=",
-							"_parent": {
-								"$ref": "AAAAAAF9fzO5rT44wUo="
-							},
-							"name": "Operation1"
 						}
 					]
 				},
