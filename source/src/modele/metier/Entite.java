@@ -1,6 +1,8 @@
 package modele.metier;
 
-
+/**
+ * @author anviton khloichet
+ */
 public abstract class Entite extends Composant{
 
 

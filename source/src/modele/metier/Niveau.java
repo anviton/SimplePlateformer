@@ -3,6 +3,9 @@ package modele.metier;
 
 import java.util.List;
 
+/**
+ * @author anviton khloichet
+ */
 public class Niveau {
     private final int positionXArrivee;
     private final int positionYArrivee;
@@ -14,7 +17,12 @@ public class Niveau {
     private final List<Bloc> listeBlocs;
 
 
-
+    /**
+     * Constructeur Niveau
+     * @param positions
+     * @param cheminFond
+     * @param listeBlocs
+     */
     public Niveau(List<Integer> positions,
                   String cheminFond, List<Bloc> listeBlocs) {
         this.positionXDepart = positions.get(0);

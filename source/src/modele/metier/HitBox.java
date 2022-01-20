@@ -1,9 +1,17 @@
 package modele.metier;
 
+/**
+ *
+ */
 public class HitBox {
     private final int hauteur;
     private final int largeur;
 
+    /**
+     * Constructeur HitBox
+     * @param hauteur
+     * @param largeur
+     */
     public HitBox(int hauteur, int largeur) {
         this.hauteur = hauteur;
         this.largeur = largeur;
