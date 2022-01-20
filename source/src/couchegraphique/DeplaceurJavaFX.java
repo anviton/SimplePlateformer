@@ -10,16 +10,30 @@ import modele.metier.Personnage;
 //import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DeplaceurJavaFX permet le déplacement du personnage
+ */
+
 public class DeplaceurJavaFX extends Deplaceur {
 
     private final Scene scene;
     private final CollisionneurClassique collisionneurClassique;
     private boolean saut;
 
+    /**
+     * DeplaceurJavaFX constructeur du déplaceur
+     * @param s scene
+     */
+
     public DeplaceurJavaFX(Scene s) {
         this.scene = s;
         this.collisionneurClassique = new CollisionneurClassique();
     }
+
+    /**
+     * deplacerPersonnagePrincipal récupère les touches pour déplacer les personnages
+     * @param perso personnage a déplacer
+     */
 
     @Override
     public void deplacerPersonnagePrincipal(Personnage perso) {
@@ -36,6 +50,12 @@ public class DeplaceurJavaFX extends Deplaceur {
         });
     }
 
+    /**
+     * gererLaGravite gère la gravité du personnage
+     * @param perso personnage a regarder pour la gravité
+     * @return la collision si elle a lieu ou non
+     */
+
     @Override
     public boolean gererLaGravite(Personnage perso){
         boolean collision = collisionneurClassique.verifCollisionEnDessous(perso, niveau);
@@ -51,6 +71,11 @@ public class DeplaceurJavaFX extends Deplaceur {
         }
         return collision;
     }
+
+    /**
+     * sauter gère le saut d'un personnage
+     * @param perso personnage a regarder pour sauter
+     */
 
     private void sauter(Personnage perso){
         List<Boolean> collisionsSaut = collisionneurClassique.verifcollisionSaut(perso, niveau);
@@ -76,6 +101,11 @@ public class DeplaceurJavaFX extends Deplaceur {
         }
     }
 
+    /**
+     * seDeplacerAGauche gère le déplacement du perso a gauche
+     * @param perso personnage a regarder pour le déplacer a gauche
+     */
+
     private void seDeplacerAGauche(Personnage perso){
         if(collisionneurClassique.verifCollisionBombeAGauche(perso, niveau)){
             if(collisionneurClassique.verifCollisionAGauche(perso, niveau)){
@@ -87,6 +117,11 @@ public class DeplaceurJavaFX extends Deplaceur {
             perso.setPositionY(niveau.getPositionYDepart());
         }
     }
+
+    /**
+     * seDeplacerADroite gère le déplacement du perso a droite
+     * @param perso personnage a regarder pour le déplacer a droite
+     */
 
     private void seDeplacerADroite(Personnage perso){
         if(collisionneurClassique.verifCollisionBombeADroite(perso, niveau)){
