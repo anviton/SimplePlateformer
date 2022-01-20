@@ -26,7 +26,7 @@ public class LesScores {
     }
 
     /**
-     * Trie la liste des scores
+     * Trie les scores
      */
     public void trierLesScores(){
         lesScores.sort(null);
