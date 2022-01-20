@@ -3,7 +3,7 @@ package couchegraphique;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import modele.logique.Collisionneur;
+import modele.logique.CollisionneurClassique;
 import modele.logique.Deplaceur;
 import modele.metier.Personnage;
 
@@ -13,12 +13,12 @@ import java.util.List;
 public class DeplaceurJavaFX extends Deplaceur {
 
     private final Scene scene;
-    private final Collisionneur collisionneur;
+    private final CollisionneurClassique collisionneurClassique;
     private boolean saut;
 
     public DeplaceurJavaFX(Scene s) {
         this.scene = s;
-        this.collisionneur = new Collisionneur();
+        this.collisionneurClassique = new CollisionneurClassique();
     }
 
     @Override
@@ -38,8 +38,8 @@ public class DeplaceurJavaFX extends Deplaceur {
 
     @Override
     public boolean gererLaGravite(Personnage perso){
-        boolean collision = collisionneur.verifCollisionEnDessous(perso, niveau);
-        boolean collisionBombe = collisionneur.verifCollisionBombeEnDessous(perso, niveau);
+        boolean collision = collisionneurClassique.verifCollisionEnDessous(perso, niveau);
+        boolean collisionBombe = collisionneurClassique.verifCollisionBombeEnDessous(perso, niveau);
         if (collisionBombe){
             if (!collision){
                 saut = true;
@@ -53,8 +53,8 @@ public class DeplaceurJavaFX extends Deplaceur {
     }
 
     private void sauter(Personnage perso){
-        List<Boolean> collisionsSaut = collisionneur.verifcollisionSaut(perso, niveau);
-        //List<Boolean> collisionsBombeSaut = collisionneur.verifcollisionBombeSaut(perso, niveau);
+        List<Boolean> collisionsSaut = collisionneurClassique.verifcollisionSaut(perso, niveau);
+        //List<Boolean> collisionsBombeSaut = collisionneurClassique.verifcollisionBombeSaut(perso, niveau);
         int tailleSaut = 0;
         for (int i = 0; i < 4; i++) {
             /*if (collisionsBombeSaut.get(i)){
@@ -77,8 +77,8 @@ public class DeplaceurJavaFX extends Deplaceur {
     }
 
     private void seDeplacerAGauche(Personnage perso){
-        if(collisionneur.verifCollisionBombeAGauche(perso, niveau)){
-            if(collisionneur.verifCollisionAGauche(perso, niveau)){
+        if(collisionneurClassique.verifCollisionBombeAGauche(perso, niveau)){
+            if(collisionneurClassique.verifCollisionAGauche(perso, niveau)){
                 perso.setPositionX(perso.getPositionX() - 1);
             }
         }
@@ -89,8 +89,8 @@ public class DeplaceurJavaFX extends Deplaceur {
     }
 
     private void seDeplacerADroite(Personnage perso){
-        if(collisionneur.verifCollisionBombeADroite(perso, niveau)){
-            if(collisionneur.verifCollisionADroite(perso, niveau)){
+        if(collisionneurClassique.verifCollisionBombeADroite(perso, niveau)){
+            if(collisionneurClassique.verifCollisionADroite(perso, niveau)){
                 perso.setPositionX(perso.getPositionX() + 1);
             }
         }

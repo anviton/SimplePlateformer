@@ -3,12 +3,20 @@ package modele.logique;
 import modele.LesScores;
 import modele.Score;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
+/**
+ * Classe ChargeurDeScores permet de charger les scores
+ */
+public class ChargeurDeScores {
 
-public class GestionnaireDeFichiers{
-
-    public static LesScores lecture(String nomFichier){
+    /**
+     * Permet de charger les scores
+     * @param nomFichier nom du fichier ou sont enregistrés des scores
+     * @return les scores chargés
+     */
+    public LesScores charger(String nomFichier){
         LesScores lesScores = new LesScores();
         try {
             FileReader lecteur = new FileReader(nomFichier);
@@ -19,22 +27,11 @@ public class GestionnaireDeFichiers{
                 String[] unScore = ligne.split(elementDeSeparation);
                 lesScores.ajouterScores(new Score(Integer.parseInt(unScore[2]), unScore[0], Integer.parseInt(unScore[1])));
             }
+            lecteurDeScore.close();
+            lecteur.close();
         }catch (Exception e){
             e.printStackTrace();
         }
         return lesScores;
     }
-
-    public static void ecriture(LesScores lesScores, String nomFichier) throws Exception{
-        FileWriter auteur = new FileWriter(nomFichier);
-        BufferedWriter auteurDeScores = new BufferedWriter(auteur);
-        for (Score score : lesScores.lesScoresProperty()) {
-            auteurDeScores.write(score.getNom() + ",");
-            auteurDeScores.write(score.getNumNiveau() + ",");
-            auteurDeScores.write(score.getTemps() + "");
-            auteurDeScores.newLine();
-        }
-        auteurDeScores.close();
-    }
-
 }

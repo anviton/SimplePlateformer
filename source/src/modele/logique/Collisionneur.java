@@ -1,168 +1,46 @@
 package modele.logique;
 
-import modele.metier.Bloc;
-import modele.metier.Musique;
 import modele.metier.Niveau;
 import modele.metier.Personnage;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Collisionneur {
-    public static Musique musique = new Musique();
+/**
+ * Classe abstraite Collisionneur permet de gérer la logique des collisions
+ * @author anviton khloichet
+ */
+public abstract class Collisionneur {
 
-    public boolean verifCollisionAGauche(Personnage perso, Niveau niveau){
-        boolean collision = true;
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionX() - 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
-                    && bloc.getHitBox() != null) {
-                collision = false;
-                break;
-            }
-        }
-        return collision;
-    }
+    /**
+     * Vérifie les collisions entre le personnage et le niveau à la gauche du personnage
+     * @param perso personnage dont les collisions doivent être vérifiées
+     * @param niveau niveau dont les collisions doivent être vérifiées
+     * @return true s'il y a collision, false sinon
+     */
+    public abstract boolean verifCollisionAGauche(Personnage perso, Niveau niveau);
 
-    public boolean verifCollisionBombeAGauche(Personnage perso, Niveau niveau){
-        boolean collisionBombe = true;
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionX() - 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionBombe = false;
-                musique.playSound();
-                break;
-            }
-        }
-        return collisionBombe;
-    }
+    /**
+     * Vérifie les collisions entre le personnage et le niveau à la droite du personnage
+     * @param perso personnage dont les collisions doivent être vérifiées
+     * @param niveau niveau dont les collisions doivent être vérifiées
+     * @return true s'il y a collision, false sinon
+     */
+    public abstract boolean verifCollisionADroite(Personnage perso, Niveau niveau);
 
-    public boolean verifCollisionADroite(Personnage perso, Niveau niveau){
-        boolean collision = true;
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionX() + 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
-                    && bloc.getHitBox() != null) {
-                collision = false;
-                break;
-            }
-        }
-        return collision;
-    }
+    /**
+     * Vérifie les collisions entre le personnage et le niveau en dessous du personnage
+     * @param perso personnage dont les collisions doivent être vérifiées
+     * @param niveau niveau dont les collisions doivent être vérifiées
+     * @return true s'il y a collision, false sinon
+     */
+    public abstract boolean verifCollisionEnDessous(Personnage perso, Niveau niveau);
 
-    public boolean verifCollisionBombeADroite(Personnage perso, Niveau niveau){
-        boolean collisionBombe = true;
-
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionX() + 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionBombe = false;
-                musique.playSound();
-
-                break;
-            }
-        }
-
-        return collisionBombe;
-    }
-
-    public boolean verifCollisionEnDessous(Personnage perso, Niveau niveau){
-        boolean gravite = true;
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionY() + 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() &&
-                    bloc.getHitBox() != null) {
-                gravite = false;
-                break;
-            }
-        }
-        return gravite;
-    }
-
-    public boolean verifCollisionBombeEnDessous(Personnage perso, Niveau niveau){
-        boolean collisionBombe = true;
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionY() + 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() &&
-                    bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionBombe = false;
-                musique.playSound();
-                break;
-            }
-        }
-        return collisionBombe;
-    }
-
-    public List<Boolean> verifcollisionSaut(Personnage perso, Niveau niveau){
-        List<Boolean> collisionsSaut = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            collisionsSaut.add(true);
-        }
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionY() - 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null) {
-                collisionsSaut.set(0, false);
-                collisionsSaut.set(1, false);
-                collisionsSaut.set(2, false);
-                collisionsSaut.set(3, false);
-            }
-            if (perso.getPositionY() - 2 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null) {
-                collisionsSaut.set(1, false);
-                collisionsSaut.set(2, false);
-                collisionsSaut.set(3, false);
-            }
-            if (perso.getPositionY() - 3 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null) {
-                collisionsSaut.set(2, false);
-                collisionsSaut.set(3, false);
-            }
-            if (perso.getPositionY() - 4 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null) {
-                collisionsSaut.set(3, false);
-            }
-        }
-        return collisionsSaut;
-    }
-
-    public List<Boolean> verifcollisionBombeSaut(Personnage perso, Niveau niveau){
-        List<Boolean> collisionsBombeSaut = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
-            collisionsBombeSaut.add(true);
-        }
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionY() - 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionsBombeSaut.set(0, false);
-                collisionsBombeSaut.set(1, false);
-                collisionsBombeSaut.set(2, false);
-                collisionsBombeSaut.set(3, false);
-                musique.playSound();
-            }
-            if (perso.getPositionY() - 2 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionsBombeSaut.set(1, false);
-                collisionsBombeSaut.set(2, false);
-                collisionsBombeSaut.set(3, false);
-                musique.playSound();
-            }
-            if (perso.getPositionY() - 3 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionsBombeSaut.set(2, false);
-                collisionsBombeSaut.set(3, false);
-                musique.playSound();
-            }
-            if (perso.getPositionY() - 4 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionsBombeSaut.set(3, false);
-                musique.playSound();
-            }
-        }
-        return collisionsBombeSaut;
-    }
-
+    /**
+     * Vérifie les collisions entre le personnage et le niveau, au dessus du personnage
+     * @param perso personnage dont les collisions doivent être vérifiées
+     * @param niveau niveau dont les collisions doivent être vérifiées
+     * @return une liste de Boolean composée de 4 Boolean pour signifier s'il y a collision sur les 4 blocs
+     * au dessus du personnage, cahque Boolean est mis à true s'il y a collision, à false sinon
+     */
+    public abstract List<Boolean> verifcollisionSaut(Personnage perso, Niveau niveau);
 }

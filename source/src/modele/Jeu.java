@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe jeu permet de jouer à un niveau
+ * Classe Jeu permet de jouer à un niveau
  * @author anviton khloichet
  */
 

@@ -11,9 +11,11 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.IntegerStringConverter;
-import modele.logique.GestionnaireDeFichiers;
 import modele.Score;
 import modele.LesScores;
+import modele.logique.SauveurDeScores;
+
+import java.util.Objects;
 
 
 /**
@@ -55,17 +57,18 @@ public class ControleurNouveauScore {
      */
     public void valideScore(ActionEvent bouttonValider) {
         Button b = (Button)bouttonValider.getSource();
+        SauveurDeScores sauveurDeScores = new SauveurDeScores();
         Stage stage = (Stage) b.getScene().getWindow();
         GridPane a;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vues/menu.fxml"));
         lesScores.ajouterScores(score);
         lesScores.trierLesScores();
         try {
-            GestionnaireDeFichiers.ecriture(lesScores, "resources/score/score.txt");
+            sauveurDeScores.sauver(lesScores, "resources/score/score.txt");
             fxmlLoader.setController(new ControleurMenu(lesScores));
             a = fxmlLoader.load();
             Scene s = new Scene(a, 1000, 1000);
-            s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
+            s.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/vues/style.css")).toExternalForm());
             stage.setTitle("Menu Principal");
             stage.setScene(s);
             stage.show();
