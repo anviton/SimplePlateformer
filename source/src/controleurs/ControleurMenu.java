@@ -1,8 +1,11 @@
 package controleurs;
 
+import couchegraphique.AfficheurJavaFX;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -18,6 +21,8 @@ import modele.LesScores;
 import modele.metier.Niveau;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Objects;
 
 public class ControleurMenu extends ControleurObservateur{
 
@@ -53,28 +58,34 @@ public class ControleurMenu extends ControleurObservateur{
         }
     }
 
+    /*public void afficheNiveaux(ActionEvent bouttonScore) {
+        Stage fenetreNiveaux = new Stage();
+        BorderPane a;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vues/niveaux.fxml"));
+        fxmlLoader.setController(new ControleurNiveaux(lesScores));
+        try {
+            a = fxmlLoader.load();
+            Scene s = new Scene(a, 500, 500);
+            fenetreNiveaux.setTitle("Niveaux");
+            s.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
+            fenetreNiveaux.setScene(s);
+            fenetreNiveaux.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 
-    public void afficheNiveau(ActionEvent bouttonNiveau){
-        Button b = (Button)bouttonNiveau.getSource();
-        ChargeurNiveau chargeur =  new ChargeurNiveau();
-        Niveau n = chargeur.chargerNiveau("resources/niveaux/niveau1.niv");
-
-        this.stage = (Stage) b.getScene().getWindow();
-        stage.setMaximized(true);
-        Canvas c = new Canvas((n.getLargeurNiveau() + 1) * 50, (n.getHauteurNiveau() + 1) * 50);
-        GraphicsContext gc = c.getGraphicsContext2D();
-        Pane pane = new Pane();
-        pane.getChildren().add(new ImageView(new Image(n.getCheminFond(), c.getWidth(), c.getHeight(), false, true)));
-        pane.getChildren().add(c);
-        ScrollPane scrollPane = new ScrollPane();
-        scrollPane.setContent(pane);
-        Scene s = b.getScene();
-        stage.setTitle("Niveau1");
-        s.setRoot(scrollPane);
-        jeu = new Jeu(n);
-        jeu.lancerBoucleDeJeu(gc, s);
-        jeu.attacher(this);
-
+    public void toNiveau(ActionEvent event) throws IOException {
+        URL vue = getClass().getResource("/vues/niveaux.fxml");
+        FXMLLoader chargeur = new FXMLLoader();
+        chargeur.setController(new ControleurNiveaux());
+        chargeur.setLocation(vue);
+        Parent parent = chargeur.load();
+        Scene scene = new Scene(parent,1000,1000);
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene.getStylesheets().add(getClass().getResource("/vues/style.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override

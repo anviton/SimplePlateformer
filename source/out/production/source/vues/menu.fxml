@@ -4,19 +4,28 @@
 <?import javafx.scene.layout.*?>
 
 
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.effect.DropShadow?>
 <GridPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0"
-            styleClass="grille" alignment="CENTER">
+          xmlns:fx="http://javafx.com/fxml"
+          prefHeight="400.0" prefWidth="600.0"
+          styleClass="grille" alignment="CENTER">
     <rowConstraints>
         <RowConstraints percentHeight="25"/>
         <RowConstraints percentHeight="5"/>
         <RowConstraints percentHeight="45"/>
         <RowConstraints percentHeight="25"/>
     </rowConstraints>
-    <Label textAlignment="CENTER" GridPane.rowIndex="1" alignment="TOP_CENTER" fx:id="Titre" styleClass="Titre" text="Simple plateformer"/>
-    <VBox alignment="CENTER" GridPane.rowIndex="2" spacing="5">
-        <Button text="Jouer" styleClass="BoutonCentre" onAction="#afficheNiveau"/>
+    <Label alignment="CENTER" contentDisplay="CENTER" GridPane.rowIndex="1" ellipsisString="" text="Simple Plateformer" textFill="WHITE" textOverrun="CLIP">
+        <font>
+            <Font name="Carlito Bold" size="70.0" />
+        </font>
+        <effect>
+            <DropShadow height="50.65" radius="24.085" spread="0.17" width="47.69" />
+        </effect>
+    </Label>
+    <VBox alignment="CENTER" GridPane.rowIndex="2" spacing="10">
+        <Button text="Niveaux" styleClass="BoutonCentre" onAction="#toNiveau"/>
         <Button text="Scores" styleClass="BoutonCentre" onAction="#afficheScores"/>
         <Button text="Quitter" styleClass="BoutonCentre" onAction="#quitter"/>
     </VBox>

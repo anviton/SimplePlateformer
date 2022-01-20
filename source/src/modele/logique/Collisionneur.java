@@ -1,6 +1,7 @@
 package modele.logique;
 
 import modele.metier.Bloc;
+import modele.metier.Musique;
 import modele.metier.Niveau;
 import modele.metier.Personnage;
 
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Collisionneur {
+    public static Musique musique = new Musique();
+
     public boolean verifCollisionAGauche(Personnage perso, Niveau niveau){
         boolean collision = true;
         for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
@@ -28,6 +31,7 @@ public class Collisionneur {
             if (perso.getPositionX() - 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionBombe = false;
+                musique.playSound();
                 break;
             }
         }
@@ -49,14 +53,18 @@ public class Collisionneur {
 
     public boolean verifCollisionBombeADroite(Personnage perso, Niveau niveau){
         boolean collisionBombe = true;
+
         for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
             Bloc bloc = niveau.getListeBlocs().get(i);
             if (perso.getPositionX() + 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionBombe = false;
+                musique.playSound();
+
                 break;
             }
         }
+
         return collisionBombe;
     }
 
@@ -80,6 +88,7 @@ public class Collisionneur {
             if (perso.getPositionY() + 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() &&
                     bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionBombe = false;
+                musique.playSound();
                 break;
             }
         }
@@ -132,21 +141,25 @@ public class Collisionneur {
                 collisionsBombeSaut.set(1, false);
                 collisionsBombeSaut.set(2, false);
                 collisionsBombeSaut.set(3, false);
+                musique.playSound();
             }
             if (perso.getPositionY() - 2 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionsBombeSaut.set(1, false);
                 collisionsBombeSaut.set(2, false);
                 collisionsBombeSaut.set(3, false);
+                musique.playSound();
             }
             if (perso.getPositionY() - 3 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionsBombeSaut.set(2, false);
                 collisionsBombeSaut.set(3, false);
+                musique.playSound();
             }
             if (perso.getPositionY() - 4 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionsBombeSaut.set(3, false);
+                musique.playSound();
             }
         }
         return collisionsBombeSaut;
