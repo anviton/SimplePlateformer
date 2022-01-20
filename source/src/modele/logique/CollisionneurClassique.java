@@ -1,7 +1,6 @@
 package modele.logique;
 
 import modele.metier.Bloc;
-import modele.metier.Musique;
 import modele.metier.Niveau;
 import modele.metier.Personnage;
 
@@ -13,7 +12,6 @@ import java.util.List;
  * @author anviton
  */
 public class CollisionneurClassique extends Collisionneur{
-    public static Musique musique = new Musique();
 
     @Override
     public boolean verifCollisionAGauche(Personnage perso, Niveau niveau){
@@ -27,20 +25,6 @@ public class CollisionneurClassique extends Collisionneur{
             }
         }
         return collision;
-    }
-
-    public boolean verifCollisionBombeAGauche(Personnage perso, Niveau niveau){
-        boolean collisionBombe = true;
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionX() - 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionBombe = false;
-                musique.playSound();
-                break;
-            }
-        }
-        return collisionBombe;
     }
 
     @Override
@@ -57,23 +41,6 @@ public class CollisionneurClassique extends Collisionneur{
         return collision;
     }
 
-    public boolean verifCollisionBombeADroite(Personnage perso, Niveau niveau){
-        boolean collisionBombe = true;
-
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionX() + 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
-                    && bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionBombe = false;
-                musique.playSound();
-
-                break;
-            }
-        }
-
-        return collisionBombe;
-    }
-
     @Override
     public boolean verifCollisionEnDessous(Personnage perso, Niveau niveau){
         boolean gravite = true;
@@ -86,20 +53,6 @@ public class CollisionneurClassique extends Collisionneur{
             }
         }
         return gravite;
-    }
-
-    public boolean verifCollisionBombeEnDessous(Personnage perso, Niveau niveau){
-        boolean collisionBombe = true;
-        for (int i = 0; i < niveau.getListeBlocs().size(); i++) {
-            Bloc bloc = niveau.getListeBlocs().get(i);
-            if (perso.getPositionY() + 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() &&
-                    bloc.getHitBox() != null && bloc.getType() == 2) {
-                collisionBombe = false;
-                musique.playSound();
-                break;
-            }
-        }
-        return collisionBombe;
     }
 
     @Override

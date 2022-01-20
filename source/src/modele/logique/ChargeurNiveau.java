@@ -8,8 +8,17 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Classe ChargeurNiveau permet de charger un niveau
+ * @author anviton khloichet
+ */
 public class ChargeurNiveau {
 
+    /**
+     * Charge un Niveau
+     * @param chemin chemin du niveau à charger
+     * @return le Niveau chargé
+     */
     public Niveau chargerNiveau(String chemin){
         Niveau n;
         List<Bloc> listeDeBlocs = new ArrayList<>();

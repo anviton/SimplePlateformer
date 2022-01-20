@@ -5,7 +5,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-
+/**
+ * Classe Score stocke les information d'un score
+ * @author anviton khloichet
+ */
 public class Score implements Comparable{
 
     private final StringProperty nom = new SimpleStringProperty();
@@ -23,7 +26,12 @@ public class Score implements Comparable{
     public void setTemps(int value) {temps.set(value);}
     public ObjectProperty<Integer> tempsProperty() {return temps;}
 
-
+    /**
+     * Constructeur de la classe Score
+     * @param temps temps mis pour le niveau
+     * @param nom nom du joueur
+     * @param numNiveau numéro du niveau
+     */
     public Score(int temps, String nom, int numNiveau) {
         this.temps.setValue(temps);
         this.numNiveau.setValue(numNiveau);

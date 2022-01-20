@@ -61,7 +61,7 @@ public class ControleurNouveauScore {
         Stage stage = (Stage) b.getScene().getWindow();
         GridPane a;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/vues/menu.fxml"));
-        lesScores.ajouterScores(score);
+        lesScores.ajouterScore(score);
         lesScores.trierLesScores();
         try {
             sauveurDeScores.sauver(lesScores, "resources/score/score.txt");

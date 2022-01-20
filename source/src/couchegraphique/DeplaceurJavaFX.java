@@ -3,11 +3,14 @@ package couchegraphique;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import modele.logique.Collisionneur;
 import modele.logique.CollisionneurClassique;
+import modele.logique.CollisionneurDeBombe;
 import modele.logique.Deplaceur;
 import modele.metier.Personnage;
 
 //import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,6 +20,7 @@ import java.util.List;
 public class DeplaceurJavaFX extends Deplaceur {
 
     private final Scene scene;
+    private final List<Collisionneur> collisionneurs;
     private final CollisionneurClassique collisionneurClassique;
     private boolean saut;
 
@@ -27,7 +31,10 @@ public class DeplaceurJavaFX extends Deplaceur {
 
     public DeplaceurJavaFX(Scene s) {
         this.scene = s;
+        this.collisionneurs = new ArrayList<>();
         this.collisionneurClassique = new CollisionneurClassique();
+        this.collisionneurs.add(new CollisionneurClassique());
+        this.collisionneurs.add(new CollisionneurDeBombe());
     }
 
     /**
@@ -58,10 +65,12 @@ public class DeplaceurJavaFX extends Deplaceur {
 
     @Override
     public boolean gererLaGravite(Personnage perso){
-        boolean collision = collisionneurClassique.verifCollisionEnDessous(perso, niveau);
-        boolean collisionBombe = collisionneurClassique.verifCollisionBombeEnDessous(perso, niveau);
-        if (collisionBombe){
-            if (!collision){
+        List<Boolean>collisions = new ArrayList<>();
+        for(Collisionneur collisionneur : collisionneurs){
+            collisions.add(collisionneur.verifCollisionEnDessous(perso, niveau));
+        }
+        if (collisions.get(1)){
+            if (!collisions.get(0)){
                 saut = true;
             }
         }
@@ -69,28 +78,17 @@ public class DeplaceurJavaFX extends Deplaceur {
             perso.setPositionX(niveau.getPositionXDepart());
             perso.setPositionY(niveau.getPositionYDepart());
         }
-        return collision;
+        return collisions.get(0);
     }
 
     /**
      * sauter gère le saut d'un personnage
      * @param perso personnage a regarder pour sauter
      */
-
     private void sauter(Personnage perso){
-        List<Boolean> collisionsSaut = collisionneurClassique.verifcollisionSaut(perso, niveau);
-        //List<Boolean> collisionsBombeSaut = collisionneurClassique.verifcollisionBombeSaut(perso, niveau);
+        List<Boolean> collisionsSaut = collisionneurs.get(0).verifcollisionSaut(perso, niveau);
         int tailleSaut = 0;
         for (int i = 0; i < 4; i++) {
-            /*if (collisionsBombeSaut.get(i)){
-                if (collisionsSaut.get(i)){
-                    tailleSaut++;
-                }
-            }
-            else {
-                perso.setPositionX(niveau.getPositionXDepart());
-                perso.setPositionY(niveau.getPositionYDepart());
-            }*/
             if (collisionsSaut.get(i)){
                 tailleSaut++;
             }
@@ -105,10 +103,13 @@ public class DeplaceurJavaFX extends Deplaceur {
      * seDeplacerAGauche gère le déplacement du perso a gauche
      * @param perso personnage a regarder pour le déplacer a gauche
      */
-
     private void seDeplacerAGauche(Personnage perso){
-        if(collisionneurClassique.verifCollisionBombeAGauche(perso, niveau)){
-            if(collisionneurClassique.verifCollisionAGauche(perso, niveau)){
+        List<Boolean>collisions = new ArrayList<>();
+        for(Collisionneur collisionneur : collisionneurs){
+            collisions.add(collisionneur.verifCollisionAGauche(perso, niveau));
+        }
+        if(collisions.get(1)){
+            if(collisions.get(0)){
                 perso.setPositionX(perso.getPositionX() - 1);
             }
         }
@@ -124,8 +125,12 @@ public class DeplaceurJavaFX extends Deplaceur {
      */
 
     private void seDeplacerADroite(Personnage perso){
-        if(collisionneurClassique.verifCollisionBombeADroite(perso, niveau)){
-            if(collisionneurClassique.verifCollisionADroite(perso, niveau)){
+        List<Boolean>collisions = new ArrayList<>();
+        for(Collisionneur collisionneur : collisionneurs){
+            collisions.add(collisionneur.verifCollisionADroite(perso, niveau));
+        }
+        if(collisions.get(1)){
+            if(collisions.get(0)){
                 perso.setPositionX(perso.getPositionX() + 1);
             }
         }

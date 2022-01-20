@@ -25,7 +25,7 @@ public class ChargeurDeScores {
             String elementDeSeparation = ",";
             while ((ligne = lecteurDeScore.readLine()) != null) {
                 String[] unScore = ligne.split(elementDeSeparation);
-                lesScores.ajouterScores(new Score(Integer.parseInt(unScore[2]), unScore[0], Integer.parseInt(unScore[1])));
+                lesScores.ajouterScore(new Score(Integer.parseInt(unScore[2]), unScore[0], Integer.parseInt(unScore[1])));
             }
             lecteurDeScore.close();
             lecteur.close();

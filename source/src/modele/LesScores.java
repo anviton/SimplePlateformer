@@ -6,7 +6,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-
+/**
+ * Classe LesScores stocke les scores
+ * @author anviton khloichet
+ */
 public class LesScores {
     private ObservableList<Score> lesScoresObs = FXCollections.observableArrayList();
     private final ListProperty<Score> lesScores = new SimpleListProperty<>(lesScoresObs);
@@ -14,13 +17,17 @@ public class LesScores {
     public void setLesScores(ObservableList<Score> value) {lesScores.set(value);}
     public ListProperty<Score> lesScoresProperty() {return lesScores;}
 
-    public LesScores() {
-
+    /**
+     * Ajoute un score à la liste des scores
+     * @param score score à ajouter à la liste
+     */
+    public void ajouterScore(Score score){
+        lesScores.add(score);
     }
 
-    public void ajouterScores(Score score){
-        lesScoresObs.add(score);
-    }
+    /**
+     * Trie la liste des scores
+     */
     public void trierLesScores(){
         lesScores.sort(null);
     }

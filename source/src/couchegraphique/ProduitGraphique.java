@@ -11,7 +11,7 @@ public abstract class ProduitGraphique {
 
     /**
      * ProduitGraphique constructeur d'un produit graphique
-     * @param cheminImg
+     * @param cheminImg chemin de l'image a ajouté
      */
 
     public ProduitGraphique(String cheminImg) {

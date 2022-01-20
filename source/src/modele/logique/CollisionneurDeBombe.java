@@ -24,7 +24,7 @@ public class CollisionneurDeBombe extends Collisionneur{
             if (perso.getPositionX() - 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionBombe = false;
-                musique.playSound();
+                //musique.playSound();
                 break;
             }
         }
@@ -39,7 +39,7 @@ public class CollisionneurDeBombe extends Collisionneur{
             if (perso.getPositionX() + 1 == bloc.getPositionX() && perso.getPositionY() == bloc.getPositionY()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionBombe = false;
-                musique.playSound();
+                //musique.playSound();
 
                 break;
             }
@@ -56,7 +56,7 @@ public class CollisionneurDeBombe extends Collisionneur{
             if (perso.getPositionY() + 1 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX() &&
                     bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionBombe = false;
-                musique.playSound();
+                //musique.playSound();
                 break;
             }
         }
@@ -77,25 +77,25 @@ public class CollisionneurDeBombe extends Collisionneur{
                 collisionsBombeSaut.set(1, false);
                 collisionsBombeSaut.set(2, false);
                 collisionsBombeSaut.set(3, false);
-                musique.playSound();
+                //musique.playSound();
             }
             if (perso.getPositionY() - 2 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionsBombeSaut.set(1, false);
                 collisionsBombeSaut.set(2, false);
                 collisionsBombeSaut.set(3, false);
-                musique.playSound();
+                //musique.playSound();
             }
             if (perso.getPositionY() - 3 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionsBombeSaut.set(2, false);
                 collisionsBombeSaut.set(3, false);
-                musique.playSound();
+                //musique.playSound();
             }
             if (perso.getPositionY() - 4 == bloc.getPositionY() && perso.getPositionX() == bloc.getPositionX()
                     && bloc.getHitBox() != null && bloc.getType() == 2) {
                 collisionsBombeSaut.set(3, false);
-                musique.playSound();
+                //musique.playSound();
             }
         }
         return collisionsBombeSaut;

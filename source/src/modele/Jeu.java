@@ -19,10 +19,9 @@ import java.util.List;
  * @author anviton khloichet
  */
 
-public class Jeu implements Runnable{
+public class Jeu extends Sujet implements Runnable{
 
     private Thread threadInterne;
-    private List<ControleurObservateur> observateurs;
     private int chrono = 0;
     private boolean jeuEnCours;
     private Deplaceur deplaceur;
@@ -35,8 +34,8 @@ public class Jeu implements Runnable{
      * @param niveauLance niveau qui devra être lancé
      */
     public Jeu(Niveau niveauLance) {
+        super();
         this.niveauLance = niveauLance;
-        this.observateurs = new ArrayList<>();
     }
 
     /**
@@ -97,7 +96,7 @@ public class Jeu implements Runnable{
             afficheur.mettreAjourLAffichageDuPersonnagePrincipal(perso, positionXAvant, positionYAvant);
             jeuEnCours = verificationVictoire(perso);
         }
-        this.nottifier();
+        nottifier();
     }
 
     /**
@@ -129,31 +128,6 @@ public class Jeu implements Runnable{
     private boolean verificationVictoire(Personnage perso){
         return niveauLance.getPositionXArrivee() != perso.getPositionX() ||
                 niveauLance.getPositionYArrivee() != perso.getPositionY();
-    }
-
-    /**
-     * Notifie les ControleurObservateurs
-     */
-    public void nottifier(){
-        for(ControleurObservateur o : observateurs){
-            o.mettreAJour();
-        }
-    }
-
-    /**
-     * Attache un observateur
-     * @param observateur l'observateur à attacher
-     */
-    public void attacher(ControleurObservateur observateur){
-        observateurs.add(observateur);
-    }
-
-    /**
-     * Détache un observateur
-     * @param observateur l'observateur à détacher
-     */
-    public void detacher(ControleurObservateur observateur){
-        observateurs.remove(observateur);
     }
 
     /**
